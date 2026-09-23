@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filosofia Moderna — A apologia da razão</title>
+<meta name="description" content="Aula completa: do mundo medieval de Tomás de Aquino (as 5 vias) à Revolução Científica e à razão autônoma da Filosofia Moderna.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f1e6; --bg2:#efe6d6; --card:#fffaf1; --ink:#2a2420; --ink2:#5b5048; --muted:#8a7d71;
+  --line:#e2d6c3; --accent:#9c3d22; --accent2:#b8572f; --accent-soft:#f3dfd3;
+  --gold:#a07a1e; --gold-soft:#f5ead0; --blue:#2f5b7c; --blue-soft:#e0eaf1;
+  --green:#3f6b3a; --green-soft:#e3eddc; --red:#a3312a; --red-soft:#f6dedb;
+  --violet:#5d4a86; --violet-soft:#e9e3f3;
+  --shadow:0 1px 2px rgba(60,40,20,.06),0 6px 24px rgba(60,40,20,.06);
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+  --navw:270px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1c1916; --bg2:#23201c; --card:#27231f; --ink:#efe7db; --ink2:#c9bdae; --muted:#9b8f82;
+    --line:#3a342d; --accent:#e08a66; --accent2:#e59b79; --accent-soft:#3b2a22;
+    --gold:#d9b25a; --gold-soft:#352c18; --blue:#8fb8d6; --blue-soft:#1f2c36;
+    --green:#9cc58f; --green-soft:#223020; --red:#ec8f86; --red-soft:#3a2220;
+    --violet:#b9a6e3; --violet-soft:#2b2538; --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 24px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1c1916; --bg2:#23201c; --card:#27231f; --ink:#efe7db; --ink2:#c9bdae; --muted:#9b8f82;
+  --line:#3a342d; --accent:#e08a66; --accent2:#e59b79; --accent-soft:#3b2a22;
+  --gold:#d9b25a; --gold-soft:#352c18; --blue:#8fb8d6; --blue-soft:#1f2c36;
+  --green:#9cc58f; --green-soft:#223020; --red:#ec8f86; --red-soft:#3a2220;
+  --violet:#b9a6e3; --violet-soft:#2b2538; --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 24px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17.5px;line-height:1.72;-webkit-font-smoothing:antialiased}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--gold));z-index:100}
+/* ---------- layout ---------- */
+.layout{display:grid;grid-template-columns:var(--navw) minmax(0,1fr);min-height:100vh}
+nav.toc{position:sticky;top:0;height:100vh;overflow-y:auto;border-right:1px solid var(--line);background:var(--bg2);padding:26px 18px 40px}
+.toc .brand{font-family:var(--serif);font-weight:700;font-size:1.15rem;line-height:1.25;margin:0 0 4px}
+.toc .sub{font-size:.8rem;color:var(--muted);margin-bottom:18px}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:t}
+.toc li a{display:flex;gap:10px;align-items:baseline;padding:7px 10px;border-radius:8px;color:var(--ink2);text-decoration:none;font-size:.9rem;line-height:1.35}
+.toc li a .n{font-family:var(--mono);font-size:.72rem;color:var(--muted);min-width:18px}
+.toc li a:hover{background:var(--card);color:var(--ink)}
+.toc li a.active{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.toc li a.active .n{color:var(--accent)}
+.toc li.subitem a{padding-left:38px;font-size:.84rem}
+.toc .tools{margin-top:20px;display:flex;gap:8px;flex-wrap:wrap}
+.btn-mini{font:inherit;font-size:.78rem;border:1px solid var(--line);background:var(--card);color:var(--ink2);padding:6px 10px;border-radius:8px;cursor:pointer}
+.btn-mini:hover{border-color:var(--accent);color:var(--accent)}
+.layout>div{min-width:0}
+main{padding:0 clamp(16px,4vw,56px) 80px;max-width:980px;width:100%}
+.mobilebar{display:none}
+@media (max-width:960px){
+  .layout{grid-template-columns:1fr}
+  nav.toc{display:none}
+  .mobilebar{display:flex;position:sticky;top:0;z-index:50;background:var(--bg2);border-bottom:1px solid var(--line);overflow-x:auto;gap:6px;padding:10px 16px;scrollbar-width:none}
+  .mobilebar::-webkit-scrollbar{display:none}
+  .mobilebar a{flex:0 0 auto;font-size:.8rem;padding:6px 11px;border-radius:999px;border:1px solid var(--line);color:var(--ink2);text-decoration:none;background:var(--card)}
+  .mobilebar a.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  html{scroll-padding-top:64px}
+  body{font-size:16.5px}
+}
+/* ---------- hero ---------- */
+.hero{padding:56px 0 30px;border-bottom:1px solid var(--line);margin-bottom:10px}
+.kicker{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.1rem,5vw,3.4rem);line-height:1.08;margin:.3em 0 .25em;letter-spacing:-.01em}
+.hero .lead{font-size:1.15rem;color:var(--ink2);max-width:720px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chip{font-size:.78rem;padding:4px 11px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--ink2)}
+/* ---------- sections ---------- */
+section.block{padding:46px 0 10px;border-bottom:1px dashed var(--line)}
+section.block:last-of-type{border-bottom:none}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+.sec-num{font-family:var(--mono);font-size:.8rem;color:#fff;background:var(--accent);border-radius:6px;padding:2px 8px;flex:0 0 auto;transform:translateY(-4px)}
+h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.6rem,3.4vw,2.2rem);line-height:1.15;margin:0}
+h3{font-family:var(--serif);font-weight:600;font-size:1.38rem;line-height:1.25;margin:2em 0 .5em;color:var(--ink)}
+h4{font-family:var(--sans);font-weight:700;font-size:1.02rem;margin:1.6em 0 .4em;color:var(--accent);letter-spacing:.01em}
+p{margin:.7em 0}
+a{color:var(--accent)}
+strong{font-weight:700}
+.part-banner{margin:40px 0 0;padding:18px 22px;border-radius:14px;background:linear-gradient(135deg,var(--accent-soft),var(--gold-soft));border:1px solid var(--line)}
+.part-banner .kicker{display:block}
+.part-banner h3{margin:.2em 0 0}
+.part-banner p{margin:.3em 0 0;color:var(--ink2);font-size:.95rem}
+/* ---------- boxes ---------- */
+.box{border-radius:12px;padding:16px 20px;margin:1.2em 0;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow)}
+.box>.lbl{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:4px}
+.box>.lbl::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.box p:first-of-type{margin-top:.2em}
+.box p:last-child{margin-bottom:.2em}
+.box ul,.box ol{margin:.4em 0;padding-left:1.25em}
+.box.mat{border-left:4px solid var(--ink2)} .box.mat>.lbl{color:var(--ink2)}
+.box.def{border-left:4px solid var(--blue);background:var(--blue-soft)} .box.def>.lbl{color:var(--blue)}
+.box.comp{border-left:4px solid var(--violet);background:var(--violet-soft)} .box.comp>.lbl{color:var(--violet)}
+.box.warn{border-left:4px solid var(--red);background:var(--red-soft)} .box.warn>.lbl{color:var(--red)}
+.box.star{border-left:4px solid var(--gold);background:var(--gold-soft)} .box.star>.lbl{color:var(--gold)}
+.box.ex{border-left:4px solid var(--green);background:var(--green-soft)} .box.ex>.lbl{color:var(--green)}
+.box.doubt{border:1px dashed var(--red);background:transparent;box-shadow:none} .box.doubt>.lbl{color:var(--red)}
+.box.deep{border-left:4px solid var(--accent);background:var(--accent-soft)} .box.deep>.lbl{color:var(--accent)}
+.comp-tag{font-weight:700;color:var(--violet)}
+blockquote.src{margin:1em 0;padding:12px 18px;border-left:3px solid var(--line);color:var(--ink2);font-style:italic;background:var(--bg2);border-radius:0 10px 10px 0}
+blockquote.src cite{display:block;font-style:normal;font-size:.8rem;color:var(--muted);margin-top:6px;font-family:var(--mono)}
+/* ---------- schema ---------- */
+pre.schema{font-family:var(--mono);font-size:.82rem;line-height:1.55;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow-x:auto;color:var(--ink);margin:1.2em 0;white-space:pre}
+pre.schema .hl{color:var(--accent);font-weight:600}
+pre.schema .hb{color:var(--blue);font-weight:600}
+pre.schema .hg{color:var(--green);font-weight:600}
+.cap{font-size:.8rem;color:var(--muted);margin-top:-.6em;margin-bottom:1.2em;font-family:var(--mono)}
+/* ---------- tables ---------- */
+.tbl{overflow-x:auto;margin:1.2em 0;border-radius:12px;border:1px solid var(--line);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.93rem;background:var(--card)}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--bg2);font-weight:700;font-size:.82rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink2)}
+tr:last-child td{border-bottom:none}
+td:first-child{font-weight:600}
+@media (max-width:640px){
+  .tbl{border:none;box-shadow:none;overflow:visible}
+  .tbl table,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+  .tbl table{background:transparent}
+  .tbl tr:first-child{display:none}
+  .tbl tr{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:0 0 10px;padding:6px 0;box-shadow:var(--shadow)}
+  .tbl td{border-bottom:none;padding:5px 14px}
+  .tbl td[data-label]::before{content:attr(data-label);display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .tbl td:first-child{font-family:var(--serif);font-size:1.02rem}
+}
+/* ---------- grids ---------- */
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:1.2em 0}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:1.2em 0}
+@media (max-width:720px){.grid2,.grid3{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+.card h5{margin:0 0 4px;font-size:1rem;font-family:var(--serif)}
+.card p{margin:.3em 0;font-size:.93rem;color:var(--ink2)}
+.card .meta{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+/* ---------- vias ---------- */
+.via{border:1px solid var(--line);border-radius:16px;background:var(--card);box-shadow:var(--shadow);margin:1.6em 0;overflow:hidden}
+.via-head{display:flex;gap:14px;align-items:center;padding:14px 20px;background:var(--bg2);border-bottom:1px solid var(--line)}
+.via-num{font-family:var(--serif);font-weight:700;font-size:1.8rem;color:var(--accent);line-height:1;min-width:34px}
+.via-head h4{margin:0;color:var(--ink);font-size:1.12rem}
+.via-head .lat{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.via-body{padding:6px 20px 14px}
+.steps{counter-reset:s;list-style:none;padding:0;margin:.8em 0}
+.steps li{counter-increment:s;position:relative;padding:6px 0 6px 38px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:7px;width:25px;height:25px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center;font-family:var(--mono)}
+/* ---------- ladder ---------- */
+.ladder{display:flex;flex-direction:column;gap:6px;margin:1.2em 0}
+.rung{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card)}
+.rung b{font-family:var(--serif);font-size:1.02rem}
+.rung span{font-size:.9rem;color:var(--ink2)}
+.rung.hi{background:var(--accent-soft);border-color:var(--accent)}
+@media (max-width:560px){.rung{grid-template-columns:1fr;gap:2px}}
+/* ---------- compare ---------- */
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch;margin:1.2em 0}
+.vs .side{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.vs .side h5{margin:0 0 6px;font-family:var(--serif);font-size:1.05rem}
+.vs .side ul{margin:0;padding-left:1.1em;font-size:.93rem;color:var(--ink2)}
+.vs .arrow{display:flex;align-items:center;font-size:1.6rem;color:var(--accent)}
+@media (max-width:640px){.vs{grid-template-columns:1fr}.vs .arrow{justify-content:center;transform:rotate(90deg)}}
+/* ---------- timeline ---------- */
+.timeline{position:relative;margin:1.4em 0;padding-left:26px}
+.timeline::before{content:"";position:absolute;left:8px;top:4px;bottom:4px;width:2px;background:var(--line)}
+.tl{position:relative;margin:0 0 14px}
+.tl::before{content:"";position:absolute;left:-23px;top:8px;width:12px;height:12px;border-radius:50%;background:var(--card);border:3px solid var(--accent)}
+.tl .y{font-family:var(--mono);font-size:.8rem;color:var(--accent);font-weight:600}
+.tl p{margin:.1em 0;font-size:.95rem}
+.tl.out::before{border-color:var(--muted)}
+.tl.out .y{color:var(--muted)}
+/* ---------- videos ---------- */
+.vgroup{margin:1.6em 0}
+.vgroup h4{margin-bottom:.6em}
+.vlist{display:grid;gap:10px}
+a.video{display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:center;padding:12px 16px;border-radius:12px;background:var(--card);border:1px solid var(--line);text-decoration:none;color:var(--ink);box-shadow:var(--shadow);transition:transform .15s,border-color .15s}
+a.video:hover{transform:translateY(-2px);border-color:var(--accent)}
+a.video .play{width:44px;height:44px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center}
+a.video .play::after{content:"";border-left:13px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:4px}
+a.video .t{display:block;font-weight:600;line-height:1.3;font-size:.95rem}
+a.video .c{display:block;font-size:.8rem;color:var(--muted);margin-top:2px}
+a.video .go{font-family:var(--mono);font-size:.72rem;color:var(--accent);white-space:nowrap}
+a.video.unv .play{background:var(--muted)}
+@media (max-width:560px){a.video{grid-template-columns:40px 1fr}a.video .go{display:none}}
+/* ---------- quiz / flash ---------- */
+details.q{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;box-shadow:var(--shadow)}
+details.q summary{cursor:pointer;padding:13px 16px;font-weight:600;list-style:none;display:flex;gap:10px}
+details.q summary::-webkit-details-marker{display:none}
+details.q summary::before{content:"+";font-family:var(--mono);color:var(--accent);font-weight:700}
+details.q[open] summary::before{content:"−"}
+details.q .ans{padding:0 16px 14px 36px;color:var(--ink2);border-top:1px dashed var(--line)}
+details.q .ans p:first-child{margin-top:.8em}
+details.q summary>span.qwrap{display:block}
+.opts{display:block;margin:.5em 0 0;font-weight:400}
+.opts>span{display:block;padding:2px 0}
+.checklist{list-style:none;padding:0}
+.checklist li{padding:8px 0 8px 32px;position:relative;border-bottom:1px solid var(--line)}
+.checklist li::before{content:"✓";position:absolute;left:4px;top:8px;width:20px;height:20px;border-radius:5px;background:var(--green-soft);color:var(--green);font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center}
+footer{margin-top:50px;padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+.kbd{font-family:var(--mono);font-size:.8em;background:var(--bg2);border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+.muted{color:var(--muted)}
+.small{font-size:.88rem}
+/* ---------- print ---------- */
+@media print{
+  :root{--bg:#fff;--card:#fff;--bg2:#f6f6f6}
+  body{font-size:11.5pt}
+  nav.toc,.mobilebar,#progress,.toc .tools{display:none!important}
+  .layout{display:block}
+  main{max-width:none;padding:0}
+  .box,.via,.card,a.video,.tbl,details.q{box-shadow:none;break-inside:avoid}
+  details.q .ans{display:block}
+  details.q>*:not(summary){display:block}
+  a.video .go::after{content:" " attr(href);font-size:.6rem}
+  section.block{break-before:auto}
+  h2,h3{break-after:avoid}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div class="layout">
+<nav class="toc" aria-label="Sumário">
+  <div class="brand">Filosofia Moderna</div>
+  <div class="sub">A apologia da razão · + As 5 vias de Tomás de Aquino</div>
+  <ol>
+    <li><a href="#visao"><span class="n">01</span>Visão geral</a></li>
+    <li><a href="#explicacao"><span class="n">02</span>Explicação completa</a></li>
+    <li class="subitem"><a href="#aquino"><span class="n">I</span>Tomás de Aquino e as 5 vias</a></li>
+    <li class="subitem"><a href="#apologia"><span class="n">II</span>A apologia da razão</a></li>
+    <li class="subitem"><a href="#selo"><span class="n">III</span>O Sétimo Selo</a></li>
+    <li class="subitem"><a href="#revolucao"><span class="n">IV</span>A Revolução Científica</a></li>
+    <li><a href="#exemplos"><span class="n">03</span>Exemplos e analogias</a></li>
+    <li><a href="#esquemas"><span class="n">04</span>Esquemas e mapas</a></li>
+    <li><a href="#pegadinhas"><span class="n">05</span>Pegadinhas</a></li>
+    <li><a href="#prova"><span class="n">06</span>O que mais cai + teste</a></li>
+    <li><a href="#videos"><span class="n">07</span>Vídeos completos</a></li>
+    <li><a href="#revisao"><span class="n">08</span>Revisão final</a></li>
+  </ol>
+  <div class="tools">
+    <button class="btn-mini" id="themeBtn" type="button">◐ Tema</button>
+    <button class="btn-mini" id="openAll" type="button">Abrir respostas</button>
+    <button class="btn-mini" onclick="window.print()" type="button">Imprimir</button>
+  </div>
+</nav>
+
+<div>
+<div class="mobilebar" aria-label="Sumário móvel">
+  <a href="#visao">Visão geral</a><a href="#aquino">Tomás</a><a href="#apologia">Apologia</a><a href="#selo">Sétimo Selo</a><a href="#revolucao">Rev. Científica</a><a href="#exemplos">Exemplos</a><a href="#esquemas">Esquemas</a><a href="#pegadinhas">Pegadinhas</a><a href="#prova">Prova</a><a href="#videos">Vídeos</a><a href="#revisao">Revisão</a>
+</div>
+<main>
+
+<header class="hero">
+  <span class="kicker">Filosofia · 2º ano EM · Preparação ENEM e vestibulares</span>
+  <h1>Filosofia Moderna:<br>a apologia da razão</h1>
+  <p class="lead">Do mundo medieval — em que a razão de Tomás de Aquino trabalhava a serviço da fé — até a Revolução Científica, que colocou a <strong>razão autônoma</strong> no centro da vida humana.</p>
+  <div class="chips">
+    <span class="chip">Slides “1 – Filosofia Moderna” (10 slides)</span>
+    <span class="chip">Texto “As 5 vias – Tomás de Aquino”</span>
+    <span class="chip">Escolástica</span><span class="chip">Renascimento e humanismo</span><span class="chip">Revolução Científica</span><span class="chip">Empirismo × Racionalismo (prévia)</span>
+  </div>
+</header>
+
+<!-- ================= 01 VISÃO GERAL ================= -->
+<section class="block" id="visao">
+  <div class="sec-head"><span class="sec-num">01</span><h2>Visão geral do tema</h2></div>
+
+  <p>O material que você recebeu tem duas peças que, à primeira vista, parecem de épocas diferentes — e são mesmo:</p>
+  <div class="grid2">
+    <div class="card"><span class="meta">TEXTO · SÉC. XIII</span><h5>As 5 vias de Tomás de Aquino</h5><p>Como um filósofo cristão medieval usava a razão para <strong>provar a existência de Deus</strong> a partir do mundo que vemos — e como ele entendia o lugar do ser humano numa realidade organizada em hierarquia.</p></div>
+    <div class="card"><span class="meta">SLIDES · SÉC. XV–XVII</span><h5>Filosofia Moderna: a apologia da razão</h5><p>Como a mentalidade moderna nasceu: o colapso do mundo feudal, o Renascimento, o humanismo, as reformas religiosas, a imprensa e, sobretudo, a <strong>Revolução Científica</strong>.</p></div>
+  </div>
+
+  <p>A leitura mais provável da proposta do professor é esta: o texto de Tomás mostra o <strong>“antes”</strong> — a razão trabalhando <em>dentro</em> da fé, num mundo ordenado por Deus; os slides mostram o <strong>“depois”</strong> — a razão se tornando <em>autônoma</em>, medindo, experimentando e explicando a natureza por conta própria. Por isso esta aula começa por Tomás e depois atravessa a ponte até a modernidade.</p>
+
+<pre class="schema">
+  <span class="hb">IDADE MÉDIA (Tomás de Aquino)</span>              <span class="hl">IDADE MODERNA (apologia da razão)</span>
+  ─────────────────────────────              ──────────────────────────────────
+  Razão a serviço da fé           ───────▶    Razão autônoma ("o grande bem")
+  Verdade garantida por Deus,                 Verdade conquistada por método,
+  pela Igreja e pelos antigos                 experiência e matemática
+  Mundo hierárquico e com                     Natureza como máquina regida
+  finalidade (tudo tem um "para quê")         por leis ("como funciona?")
+  Teocentrismo                                Antropocentrismo
+               ▲                                           ▲
+               └──── crise: Renascimento, Reformas, ───────┘
+                     imprensa, burguesia, monarquias,
+                     Revolução Científica
+</pre>
+  <p class="cap">Mapa da aula inteira em uma imagem.</p>
+
+  <h3>O que você vai dominar ao final</h3>
+  <ol>
+    <li>Cada uma das <strong>5 vias</strong>: o ponto de partida, o raciocínio passo a passo e a conclusão — e o que elas têm em comum.</li>
+    <li>A visão de Tomás sobre o <strong>ser humano como ser intermediário</strong> (corpo + alma).</li>
+    <li>O que significa “<strong>apologia da razão</strong>” e quais mudanças históricas produziram a mentalidade moderna.</li>
+    <li>O papel do filme <strong><em>O Sétimo Selo</em></strong> como símbolo da crise da fé medieval.</li>
+    <li>O que foi a <strong>Revolução Científica</strong>: características, fatores (Renascimento, humanismo, imprensa, Reforma, hermetismo), efeitos e personagens.</li>
+  </ol>
+
+  <div class="box doubt">
+    <span class="lbl">Notas sobre o material (leia antes)</span>
+    <ul>
+      <li>Todo o texto dos 10 slides e do documento foi lido sem problemas de legibilidade. O slide 4 traz uma <strong>foto</strong> da cena do jogo de xadrez entre o cavaleiro e a Morte, de <em>O Sétimo Selo</em>, e um link de YouTube. Não foi possível confirmar se esse link ainda está público (o YouTube recusou a verificação); ele aparece na seção de vídeos marcado como <strong>“não verificado”</strong>.</li>
+      <li>Em três pontos o material simplifica ou diverge do que costuma ser cobrado — a <strong>data</strong> da Revolução Científica, a inclusão de <strong>Louis Pasteur</strong> entre os nomes do período e a afirmação de que a Terra girar em torno do Sol foi “<strong>provada</strong>” naquele momento. Nada disso é “erro grave”, mas cada ponto é explicado no lugar certo, em caixas de <span class="comp-tag">Complemento para melhor compreensão:</span>.</li>
+      <li>Todo acréscimo que <strong>não</strong> está nos arquivos aparece em caixas roxas com a frase “Complemento para melhor compreensão:”. O que está em caixas cinza “Do material” é o conteúdo original.</li>
+    </ul>
+  </div>
+
+  <div class="grid3">
+    <div class="box def" style="margin:0"><span class="lbl">Legenda</span><p>Definição de termo técnico.</p></div>
+    <div class="box comp" style="margin:0"><span class="lbl">Legenda</span><p>Complemento externo ao material.</p></div>
+    <div class="box star" style="margin:0"><span class="lbl">Legenda</span><p>Ponto muito cobrado em prova.</p></div>
+    <div class="box warn" style="margin:0"><span class="lbl">Legenda</span><p>Pegadinha / erro comum.</p></div>
+    <div class="box ex" style="margin:0"><span class="lbl">Legenda</span><p>Exemplo ou analogia.</p></div>
+    <div class="box deep" style="margin:0"><span class="lbl">Legenda</span><p>Aprofundamento (nível avançado).</p></div>
+  </div>
+</section>
+
+<!-- ================= 02 EXPLICAÇÃO ================= -->
+<section class="block" id="explicacao">
+  <div class="sec-head"><span class="sec-num">02</span><h2>Explicação completa, por tópicos</h2></div>
+  <p>A explicação está dividida em quatro partes, seguindo a lógica “antes → crise → depois”: <strong>I.</strong> Tomás de Aquino (o mundo medieval); <strong>II.</strong> a apologia da razão (slides 1–3); <strong>III.</strong> <em>O Sétimo Selo</em> (slide 4); <strong>IV.</strong> a Revolução Científica (slides 5–10).</p>
+
+<!-- ---------- PARTE I ---------- -->
+<div class="part-banner" id="aquino">
+  <span class="kicker">Parte I · Texto “As 5 vias”</span>
+  <h3>Tomás de Aquino: a razão a serviço da fé</h3>
+  <p>O ponto de partida: como o pensamento medieval mais sofisticado usava a razão.</p>
+</div>
+
+<h3>1. Quem foi Tomás de Aquino e por que ele importa aqui</h3>
+<div class="box comp">
+  <span class="lbl">Complemento</span>
+  <p><span class="comp-tag">Complemento para melhor compreensão:</span> o material apresenta Tomás apenas como “o filósofo cristão”. Para situá-lo:</p>
+  <ul>
+    <li><strong>Tomás de Aquino (1225–1274)</strong> foi um frade dominicano italiano, professor em Paris, autor da <strong><em>Suma Teológica</em></strong> — é nela que aparecem as cinco vias.</li>
+    <li>É o maior nome da <strong>Escolástica</strong>, a filosofia ensinada nas universidades medievais, que buscava <strong>conciliar fé e razão</strong>.</li>
+    <li>Sua grande obra foi unir o <strong>cristianismo</strong> à filosofia de <strong>Aristóteles</strong>, que tinha sido redescoberta no Ocidente nos séculos XII–XIII.</li>
+    <li>Para ele, <strong>fé e razão não se contradizem</strong>, porque as duas vêm de Deus. Mas há hierarquia: a razão pode chegar sozinha a algumas verdades (por exemplo, que Deus existe), enquanto outras só a fé alcança (por exemplo, a Trindade). Daí a famosa fórmula medieval: a filosofia como “<strong>serva da teologia</strong>”.</li>
+  </ul>
+</div>
+
+<div class="box def">
+  <span class="lbl">Definições</span>
+  <p><strong>Escolástica:</strong> método e filosofia das escolas e universidades medievais (séc. IX–XIV, auge no XIII). Usa argumentação lógica rigorosa para explicar e defender verdades da fé.</p>
+  <p><strong>Via:</strong> literalmente “caminho”. Cada via é um <strong>caminho racional</strong> que parte de algo que observamos no mundo e termina na conclusão de que Deus existe.</p>
+</div>
+
+<h3>2. O que o texto diz, antes de tudo</h3>
+<blockquote class="src">“Assim, o filósofo cristão distingue cinco vias para caracterizar o conhecimento e provar a existência de Deus.”<cite>— texto “As 5 vias – Tomás de Aquino”</cite></blockquote>
+<p>Repare na intenção: <strong>provar</strong> a existência de Deus — não pela fé, não pela Bíblia, mas por <strong>argumentos racionais</strong> que partem da experiência. Isso é importantíssimo, porque mostra que a Idade Média <strong>não era “contra a razão”</strong>. Ela usava a razão, mas <em>com um destino já fixado</em>: confirmar a fé.</p>
+
+<h3>3. A estrutura comum das 5 vias</h3>
+<p>Antes de ver cada via, entenda o “molde” de todas elas. Se você decorar esse molde, consegue reconstruir qualquer uma na prova:</p>
+<pre class="schema">
+ <span class="hg">① FATO OBSERVADO</span>        algo que qualquer um vê no mundo
+        │                   (movimento, causas, coisas que nascem e morrem,
+        │                    graus de qualidade, ordem)
+        ▼
+ <span class="hb">② PRINCÍPIO</span>             "nada se move sozinho", "nada é causa de si",
+        │                   "do nada, nada vem"...
+        ▼
+ <span class="hl">③ RECUSA DO INFINITO</span>   se cada coisa depende de outra, e a cadeia
+        │                   fosse infinita, nada explicaria nada
+        ▼
+ <span class="hl">④ CONCLUSÃO</span>            existe um PRIMEIRO que não depende de nada
+                            → "e a isso todos chamam Deus"
+</pre>
+<p class="cap">O “molde” das cinco vias.</p>
+
+<div class="box def">
+  <span class="lbl">Definição</span>
+  <p><strong>Regresso ao infinito</strong> (o texto fala em “retroagirmos ao infinito”): voltar de explicação em explicação sem nunca chegar a um ponto de partida. Exemplo: “A foi movido por B, que foi movido por C, que foi movido por D…” para sempre. Tomás considera que esse regresso <strong>não explica</strong> nada — então precisa haver um primeiro termo.</p>
+</div>
+
+<!-- VIA 1 -->
+<div class="via">
+  <div class="via-head"><span class="via-num">1</span><div><h4>Primeiro motor imóvel</h4><span class="lat">a via do MOVIMENTO</span></div></div>
+  <div class="via-body">
+    <blockquote class="src">“Esta primeira via supõe a existência do movimento no universo. Porém, um ser não move a si mesmo, só podendo, então, mover outro ou por outro ser movido. Assim, se retroagirmos ao infinito, não explicamos o movimento se não encontrarmos um primeiro motor que move todos os outros.”<cite>— texto do material</cite></blockquote>
+    <ol class="steps">
+      <li><strong>Fato:</strong> há movimento no universo (as coisas mudam, se deslocam, se transformam).</li>
+      <li><strong>Princípio:</strong> nada move a si mesmo; tudo o que se move é movido por outro.</li>
+      <li><strong>Problema:</strong> esse “outro” também é movido por outro… Se a cadeia fosse infinita, não haveria um primeiro motor — e, sem ele, não haveria nenhum movimento agora.</li>
+      <li><strong>Conclusão:</strong> existe um <strong>primeiro motor que move sem ser movido</strong> (imóvel) = Deus.</li>
+    </ol>
+    <div class="box comp">
+      <span class="lbl">Complemento</span>
+      <p><span class="comp-tag">Complemento para melhor compreensão:</span> “movimento”, para Tomás (herdeiro de Aristóteles), não é só deslocamento. É <strong>qualquer mudança</strong>: a passagem de <strong>potência</strong> a <strong>ato</strong>.</p>
+      <ul>
+        <li><strong>Ato</strong> = o que a coisa <em>já é</em>. <strong>Potência</strong> = o que ela <em>pode vir a ser</em>.</li>
+        <li>Exemplo clássico do próprio Tomás: a madeira é quente <em>em potência</em>; o fogo, que é quente <em>em ato</em>, a torna quente em ato.</li>
+        <li>Nada passa sozinho de potência a ato: precisa de algo que já esteja em ato. Por isso Deus, o primeiro motor, é concebido como <strong>ato puro</strong> — sem nenhuma potência, sem nada “a vir a ser”. Por isso é imóvel: não tem o que mudar.</li>
+        <li>A ideia de “primeiro motor imóvel” vem de <strong>Aristóteles</strong>; Tomás a incorpora ao cristianismo.</li>
+      </ul>
+    </div>
+    <div class="box ex"><span class="lbl">Analogia</span><p><strong>Fila de dominós caindo.</strong> Cada peça cai porque a anterior a empurrou. Se você perguntar “por que essas peças estão caindo?”, responder “porque a peça anterior caiu” infinitas vezes nunca explica o fenômeno. Alguém (ou algo) precisa ter dado o primeiro empurrão — e esse “primeiro” não pode ser só mais um dominó.</p></div>
+  </div>
+</div>
+
+<!-- VIA 2 -->
+<div class="via">
+  <div class="via-head"><span class="via-num">2</span><div><h4>Primeira causa eficiente</h4><span class="lat">a via da CAUSALIDADE</span></div></div>
+  <div class="via-body">
+    <blockquote class="src">“A segunda via diz respeito ao efeito que este motor imóvel acarreta: a percepção da ordenação das coisas em causas e efeitos permite averiguar que não há efeito sem causa. Dessa forma, igualmente retrocedendo ao infinito, não poderíamos senão chegar a uma causa eficiente que dá início ao movimento das coisas.”<cite>— texto do material</cite></blockquote>
+    <ol class="steps">
+      <li><strong>Fato:</strong> no mundo, as coisas estão ordenadas em <strong>causas e efeitos</strong>.</li>
+      <li><strong>Princípio:</strong> não há efeito sem causa; e nada pode ser causa de si mesmo (teria de existir antes de si mesmo, o que é absurdo).</li>
+      <li><strong>Problema:</strong> se a série de causas fosse infinita, não haveria causa primeira — e sem a primeira, não haveria as intermediárias nem os efeitos que vemos.</li>
+      <li><strong>Conclusão:</strong> existe uma <strong>primeira causa eficiente</strong>, não causada = Deus.</li>
+    </ol>
+    <div class="box def"><span class="lbl">Definição</span><p><strong>Causa eficiente</strong> = aquilo que <strong>produz</strong> algo, o agente que faz acontecer. É a ideia mais próxima do nosso “causa” no dia a dia.</p></div>
+    <div class="box comp">
+      <span class="lbl">Complemento</span>
+      <p><span class="comp-tag">Complemento para melhor compreensão:</span> Aristóteles distinguia <strong>quatro causas</strong>. Vale conhecer porque a 2ª via usa uma delas e a 5ª via usa outra:</p>
+      <div class="tbl"><table>
+        <tr><th>Causa</th><th>Pergunta que responde</th><th>Exemplo: uma estátua de bronze</th></tr>
+        <tr><td>Material</td><td>De que é feito?</td><td>O bronze</td></tr>
+        <tr><td>Formal</td><td>O que é? Qual sua forma?</td><td>A forma de um atleta</td></tr>
+        <tr><td>Eficiente ← <em>2ª via</em></td><td>Quem/o que produziu?</td><td>O escultor</td></tr>
+        <tr><td>Final ← <em>5ª via</em></td><td>Para quê? Qual o fim?</td><td>Homenagear o atleta</td></tr>
+      </table></div>
+    </div>
+    <div class="box doubt">
+      <span class="lbl">Atenção à redação do material</span>
+      <p>O texto diz que a 2ª via trata “do efeito que este motor imóvel acarreta”, ligando-a à 1ª. Isso é uma <strong>ponte didática</strong> do autor do texto. Na <em>Suma Teológica</em>, cada via é um <strong>argumento independente</strong>: a 1ª parte do <em>movimento</em>; a 2ª parte da <em>relação causa-efeito</em>. Na prova, trate-as como caminhos distintos que chegam ao mesmo lugar.</p>
+    </div>
+  </div>
+</div>
+
+<!-- VIA 3 -->
+<div class="via">
+  <div class="via-head"><span class="via-num">3</span><div><h4>Ser necessário e seres possíveis</h4><span class="lat">a via da CONTINGÊNCIA</span></div></div>
+  <div class="via-body">
+    <blockquote class="src">“A terceira via compara os seres que podem ser e não ser. A possibilidade destes seres implica que alguma vez este ser não foi e passou a ser e ainda vem a não ser novamente. Mas do nada, nada vem e, por isso, estes seres possíveis dependem de um ser necessário para fundamentar suas existências.”<cite>— texto do material</cite></blockquote>
+    <ol class="steps">
+      <li><strong>Fato:</strong> vemos seres que <strong>nascem e morrem</strong> — podem ser e podem não ser. São seres <strong>possíveis</strong> (ou contingentes).</li>
+      <li><strong>Consequência:</strong> se um ser pode não ser, houve um momento em que não era, passou a ser, e um dia deixará de ser. Sua existência <strong>não vem dele mesmo</strong>.</li>
+      <li><strong>Princípio:</strong> “do nada, nada vem”. Se tudo fosse apenas possível, em algum momento nada teria existido — e então nada existiria hoje.</li>
+      <li><strong>Conclusão:</strong> existe um <strong>ser necessário</strong>, que não pode não existir e que fundamenta a existência dos outros = Deus.</li>
+    </ol>
+    <div class="grid2">
+      <div class="box def" style="margin:0"><span class="lbl">Ser possível (contingente)</span><p>Existe, mas <strong>poderia não existir</strong>. Recebe o ser de outro. Ex.: você, uma árvore, uma estrela.</p></div>
+      <div class="box def" style="margin:0"><span class="lbl">Ser necessário</span><p><strong>Não pode não existir</strong>. Tem o ser por si mesmo e o dá aos outros. Para Tomás: Deus.</p></div>
+    </div>
+    <div class="box ex"><span class="lbl">Analogia</span><p><strong>Luz emprestada.</strong> A Lua brilha, mas não tem luz própria: reflete a do Sol. Os seres possíveis são como a Lua — “brilham” (existem), mas a existência deles é emprestada. Se tudo fosse Lua e não houvesse Sol, não haveria brilho algum.</p></div>
+  </div>
+</div>
+
+<!-- VIA 4 -->
+<div class="via">
+  <div class="via-head"><span class="via-num">4</span><div><h4>Graus de perfeição</h4><span class="lat">a via da GRADAÇÃO</span></div></div>
+  <div class="via-body">
+    <blockquote class="src">“A quarta via trata dos graus de perfeição, em que comparações são constatadas a partir de um máximo (ótimo) que na verdade contém o verdadeiro ser (o mais ou menos só se diz em referência a um máximo).”<cite>— texto do material</cite></blockquote>
+    <ol class="steps">
+      <li><strong>Fato:</strong> comparamos coisas o tempo todo: algo é <em>mais</em> ou <em>menos</em> bom, verdadeiro, nobre, belo.</li>
+      <li><strong>Princípio:</strong> só dá para dizer “mais” ou “menos” <strong>em referência a um máximo</strong>. Uma escala precisa de um topo que sirva de medida.</li>
+      <li><strong>Conclusão:</strong> existe algo que é o <strong>máximo</strong> — o mais verdadeiro, o melhor, o mais perfeito — e que é a causa das perfeições nos outros = Deus.</li>
+    </ol>
+    <div class="box ex"><span class="lbl">Exemplo</span><p>Tomás usa o calor: dizemos que algo é “mais quente” quanto mais se aproxima do que é quente ao máximo (na física da época, o fogo). Da mesma forma, dizer que uma ação é “mais justa” que outra pressupõe uma <strong>justiça plena</strong> como referência. Pense numa régua: “quase 30 cm” só faz sentido porque existe a marca de 30.</p></div>
+    <div class="box comp"><span class="lbl">Complemento</span><p><span class="comp-tag">Complemento para melhor compreensão:</span> essa é a via com <strong>sabor mais platônico</strong>: lembra a ideia de Platão de que as coisas “participam” de um modelo perfeito (a Ideia de Bem). As outras quatro são mais claramente aristotélicas.</p></div>
+  </div>
+</div>
+
+<!-- VIA 5 -->
+<div class="via">
+  <div class="via-head"><span class="via-num">5</span><div><h4>Finalidade do ser (Governo Supremo)</h4><span class="lat">a via TELEOLÓGICA (da ordem e do fim)</span></div></div>
+  <div class="via-body">
+    <blockquote class="src">“A quinta via fala da questão da ordem e finalidade que a suprema inteligência governa todas as coisas (já que no mundo há ordem!), dispondo-as de forma organizada racionalmente, o que evidencia a intenção da existência de cada ser.”<cite>— texto do material</cite></blockquote>
+    <ol class="steps">
+      <li><strong>Fato:</strong> no mundo há <strong>ordem</strong>. Até seres sem inteligência (plantas, corpos naturais) agem <strong>regularmente em direção a um fim</strong>: a semente vira árvore, não pedra.</li>
+      <li><strong>Princípio:</strong> o que não tem inteligência não pode se dirigir sozinho a um fim; precisa ser dirigido por alguém inteligente.</li>
+      <li><strong>Conclusão:</strong> existe uma <strong>inteligência suprema</strong> que ordena e governa todas as coisas para seus fins = Deus.</li>
+    </ol>
+    <div class="box def"><span class="lbl">Definição</span><p><strong>Teleologia</strong> (do grego <em>télos</em> = fim, finalidade): explicar as coisas pelo seu <strong>“para quê”</strong>. É a <strong>causa final</strong> de Aristóteles.</p></div>
+    <div class="box ex"><span class="lbl">Analogia (do próprio Tomás)</span><p><strong>A flecha e o arqueiro.</strong> Uma flecha acerta o alvo, mas não “sabe” mirar. Se ela vai em direção ao alvo, é porque um arqueiro a dirigiu. Assim também a natureza: se age com ordem e finalidade sem ter inteligência, alguém inteligente a dirige.</p></div>
+  </div>
+</div>
+
+<h3>4. Quadro-síntese das 5 vias</h3>
+<div class="tbl"><table>
+  <tr><th>Via</th><th>Parte de (fato observado)</th><th>Princípio usado</th><th>Deus é chamado de…</th></tr>
+  <tr><td>1ª</td><td>Movimento / mudança</td><td>Nada se move sozinho</td><td>Primeiro motor imóvel</td></tr>
+  <tr><td>2ª</td><td>Ordem de causas e efeitos</td><td>Não há efeito sem causa; nada é causa de si</td><td>Primeira causa eficiente</td></tr>
+  <tr><td>3ª</td><td>Seres que nascem e morrem</td><td>Do nada, nada vem</td><td>Ser necessário</td></tr>
+  <tr><td>4ª</td><td>Graus de perfeição</td><td>“Mais/menos” pressupõe um máximo</td><td>Ser perfeitíssimo (o máximo)</td></tr>
+  <tr><td>5ª</td><td>Ordem e finalidade na natureza</td><td>O que não pensa precisa ser dirigido</td><td>Inteligência suprema / Governo supremo</td></tr>
+</table></div>
+<div class="box star"><span class="lbl">Macete de memorização</span><p><strong>M – C – N – P – F</strong> → <strong>M</strong>ovimento, <strong>C</strong>ausa, <strong>N</strong>ecessário, <strong>P</strong>erfeição, <strong>F</strong>inalidade.<br>Frase: “<strong>M</strong>eu <strong>C</strong>achorro <strong>N</strong>unca <strong>P</strong>erde o <strong>F</strong>oco.”</p></div>
+
+<h3>5. O que todas as vias têm em comum</h3>
+<blockquote class="src">“Todas essas vias têm em comum o princípio de causalidade, herdado de Aristóteles, além de partirem do empírico, ou seja, de realidades concretas e de um mundo hierarquicamente ordenado.”<cite>— texto do material</cite></blockquote>
+<div class="grid3">
+  <div class="card"><span class="meta">1</span><h5>Princípio de causalidade</h5><p>Tudo o que acontece ou existe tem uma causa. Herança direta de <strong>Aristóteles</strong>.</p></div>
+  <div class="card"><span class="meta">2</span><h5>Partem do empírico</h5><p>Começam pela <strong>experiência sensível</strong> — algo que se vê no mundo concreto — e não por uma ideia na cabeça.</p></div>
+  <div class="card"><span class="meta">3</span><h5>Mundo hierárquico</h5><p>A realidade é uma escada ordenada, do mais simples ao mais perfeito, com Deus no topo.</p></div>
+</div>
+<div class="box def"><span class="lbl">Definição</span><p><strong>Empírico</strong> = baseado na experiência, na observação pelos sentidos. Um argumento que parte do empírico é chamado de <strong><em>a posteriori</em></strong> (“a partir do que vem depois” da experiência). Guarde esse termo: ele volta na Parte IV.</p></div>
+<div class="box deep">
+  <span class="lbl">Aprofundamento</span>
+  <p><span class="comp-tag">Complemento para melhor compreensão:</span> dois detalhes que separam quem “decorou” de quem entendeu:</p>
+  <ul>
+    <li><strong>Tomás recusava o argumento ontológico</strong> de Santo Anselmo (“Deus é aquilo de que nada maior pode ser pensado; logo, existe”). Esse argumento é <em>a priori</em> — parte só do conceito de Deus. Tomás achava que o ser humano precisa partir <strong>do mundo sensível</strong>. Por isso as 5 vias são todas <em>a posteriori</em>.</li>
+    <li>O “primeiro” das vias <strong>não é primeiro no tempo</strong>, e sim primeiro na <strong>ordem de dependência</strong>. Tomás chegou a afirmar que a razão sozinha não consegue provar que o mundo teve um começo no tempo — isso ele aceitava pela fé. O que as vias provam é que, <em>agora</em>, tudo depende de algo que não depende de nada.</li>
+  </ul>
+</div>
+
+<h3>6. O ser humano como ser intermediário</h3>
+<blockquote class="src">“Para ele, o homem é um ser intermediário. É composto de corpo (matéria) e alma (forma) sem as quais nada significa, isto é, nada é isoladamente. Assim, o homem é um ser intermediário entre os seres de forma mais elementar, como os minerais, as plantas e os animais, e os seres mais perfeitos como os anjos e Deus. O homem possui as características dos anteriores a ele e também dos procedentes na hierarquia do universo.”<cite>— texto do material</cite></blockquote>
+
+<h4>6.1 Corpo e alma: matéria e forma</h4>
+<p>Para Tomás, o ser humano <strong>não é uma alma presa num corpo</strong> (como pensava Platão). Ele é a <strong>união</strong> de duas coisas que só fazem sentido juntas:</p>
+<pre class="schema">
+      CORPO  ────  <span class="hb">matéria</span>  (aquilo de que somos feitos)
+        +
+      ALMA   ────  <span class="hl">forma</span>    (aquilo que faz a matéria ser um ser humano vivo e racional)
+        =
+      <span class="hg">SER HUMANO</span>   "nada é isoladamente": corpo sem alma é cadáver;
+                   alma sem corpo não é um ser humano completo
+</pre>
+<div class="box comp"><span class="lbl">Complemento</span><p><span class="comp-tag">Complemento para melhor compreensão:</span> essa teoria se chama <strong>hilemorfismo</strong> (do grego <em>hýle</em> = matéria + <em>morphé</em> = forma) e vem de Aristóteles. Tudo o que existe na natureza é matéria + forma. Uma escultura: o mármore é a matéria; a figura, a forma. No ser vivo, a forma é a <strong>alma</strong> — aquilo que o anima (<em>anima</em>, em latim, é “alma”).</p></div>
+
+<h4>6.2 A escada dos seres</h4>
+<p>O texto coloca o ser humano no meio de uma hierarquia. Cada degrau tem o que os de baixo têm, <strong>mais</strong> alguma coisa:</p>
+<div class="ladder">
+  <div class="rung"><b>Deus</b><span>Ser necessário, ato puro, perfeição máxima — topo da escada.</span></div>
+  <div class="rung"><b>Anjos</b><span>Inteligências puras, <strong>sem corpo</strong>.</span></div>
+  <div class="rung hi"><b>Ser humano</b><span>Existe + vive + sente + <strong>pensa (razão)</strong>. Tem corpo como os de baixo e intelecto como os de cima → <strong>ser intermediário</strong>.</span></div>
+  <div class="rung"><b>Animais</b><span>Existem + vivem + <strong>sentem</strong> e se movem.</span></div>
+  <div class="rung"><b>Plantas</b><span>Existem + <strong>vivem</strong> (nutrem-se, crescem, reproduzem-se).</span></div>
+  <div class="rung"><b>Minerais</b><span>Apenas <strong>existem</strong> — forma “mais elementar”.</span></div>
+</div>
+<p class="cap">Detalhes de cada degrau (o que cada um “tem”) são complemento para melhor compreensão, baseados na tradição aristotélica que Tomás segue.</p>
+<div class="box doubt"><span class="lbl">Palavra ambígua no texto</span><p>O texto diz que o homem possui as características “dos <strong>procedentes</strong> na hierarquia”. Pelo contexto, a leitura mais provável é “dos <strong>seres que vêm depois / acima</strong> dele” (anjos e Deus), em contraste com “os anteriores a ele” (minerais, plantas, animais). Ou seja: o ser humano compartilha a <strong>matéria</strong> com os de baixo e a <strong>inteligência</strong> com os de cima.</p></div>
+
+<div class="box star"><span class="lbl">Por que isso importa para a Filosofia Moderna</span><p>Guarde a imagem do <strong>mundo como escada ordenada por Deus, em que tudo tem uma finalidade</strong>. É exatamente essa imagem que a modernidade vai desmontar: a natureza passará a ser vista como <strong>matéria em movimento regida por leis matemáticas</strong>, e a pergunta deixará de ser “para quê?” (finalidade) para ser “<strong>como funciona?</strong>” (mecanismo).</p></div>
+
+<!-- ---------- PARTE II ---------- -->
+<div class="part-banner" id="apologia">
+  <span class="kicker">Parte II · Slides 1 a 3</span>
+  <h3>A apologia da razão</h3>
+  <p>Como um mundo inteiro mudou — e por que a razão virou “o grande bem da humanidade”.</p>
+</div>
+
+<h3>1. O que significa “apologia da razão”</h3>
+<div class="box def">
+  <span class="lbl">Definição</span>
+  <p><strong>Apologia</strong> vem do grego <em>apología</em> = <strong>defesa</strong>, discurso em favor de algo. (A <em>Apologia de Sócrates</em>, de Platão, é o discurso de defesa de Sócrates no tribunal.) Hoje, no dia a dia, usamos a palavra para “elogio exagerado” e até com sentido negativo (“apologia ao crime”), mas aqui o sentido é o filosófico: <strong>defesa e exaltação da razão</strong>.</p>
+</div>
+<p>Então o título do conjunto de slides já resume a tese da Filosofia Moderna: <strong>a razão humana é defendida e elevada</strong> como o instrumento principal — e autônomo — para conhecer o mundo e organizar a vida.</p>
+
+<h3>2. Dois indivíduos, dois mundos (slide 2)</h3>
+<blockquote class="src">“Se compararmos um indivíduo medieval a um indivíduo moderno, as diferenças serão gritantes. As roupas, os costumes, a relação com o tempo e com o espaço, as construções, a comida, o transporte, a família, a educação, a ciência, a arte, o imaginário, muita coisa é diferente. Pareceria que esses dois indivíduos viveram em dois mundos distintos.”<cite>— slide 2</cite></blockquote>
+<p>O slide lista as áreas em que a diferença aparece. A tabela abaixo organiza essa lista; a coluna de exemplos é <span class="comp-tag">Complemento para melhor compreensão:</span> para você visualizar o contraste.</p>
+<div class="tbl"><table>
+  <tr><th>Área (do slide)</th><th>Indivíduo medieval</th><th>Indivíduo moderno</th></tr>
+  <tr><td>Relação com o tempo</td><td>Tempo marcado pelos sinos da igreja, pelas estações e pelo calendário religioso</td><td>Tempo do relógio mecânico, do comércio, dos prazos e juros</td></tr>
+  <tr><td>Relação com o espaço</td><td>Mundo pequeno, vivido no feudo; cosmo fechado, com a Terra no centro</td><td>Grandes navegações, mapas novos; universo que se expande (e a Terra sai do centro)</td></tr>
+  <tr><td>Ciência</td><td>Saber apoiado na autoridade (Igreja, Bíblia, Aristóteles)</td><td>Saber apoiado na experiência, no método e na matemática</td></tr>
+  <tr><td>Arte</td><td>Temas religiosos, figuras planas, função devocional</td><td>Perspectiva, anatomia, retrato do indivíduo, temas greco-romanos</td></tr>
+  <tr><td>Educação</td><td>Mosteiros e universidades sob a Igreja</td><td>Humanismo, estudo dos clássicos, circulação de livros impressos</td></tr>
+  <tr><td>Imaginário</td><td>Mundo cheio de sinais divinos, milagres, demônios</td><td>Natureza cada vez mais explicada por causas naturais</td></tr>
+  <tr><td>Roupas, comida, construções, transporte, família</td><td colspan="2">O slide cita essas áreas sem detalhar. A ideia central é que a mudança foi <strong>total</strong> — atingiu do cotidiano ao pensamento.</td></tr>
+</table></div>
+
+<h3>3. A pergunta central e as quatro evidências de mudança</h3>
+<blockquote class="src">“De que forma a mentalidade moderna, compreendendo a ciência, a filosofia e a arte, foi estabelecida? O fortalecimento da burguesia, a centralização do poder monárquico, o Renascimento e as reformas religiosas eram evidências de que as mudanças que marcavam o colapso do mundo feudal afetavam o conjunto da vida social na Europa.”<cite>— slide 2</cite></blockquote>
+<pre class="schema">
+                     <span class="hl">COLAPSO DO MUNDO FEUDAL</span>
+                               │
+     ┌──────────────┬──────────┴───────────┬──────────────────┐
+     ▼              ▼                      ▼                  ▼
+ Fortalecimento  Centralização do     Renascimento       Reformas
+ da BURGUESIA    PODER MONÁRQUICO    (cultura, arte)    religiosas
+ (economia)      (política)                              (religião)
+     └──────────────┴──────────┬───────────┴──────────────────┘
+                               ▼
+             mudança no <span class="hg">CONJUNTO DA VIDA SOCIAL</span>
+                               ▼
+                    <span class="hb">MENTALIDADE MODERNA</span>
+                 (ciência + filosofia + arte)
+</pre>
+<p class="cap">As quatro “evidências” do slide 2 atingem economia, política, cultura e religião ao mesmo tempo.</p>
+
+<div class="box comp">
+  <span class="lbl">Complemento</span>
+  <p><span class="comp-tag">Complemento para melhor compreensão:</span> por que cada fator ajuda a razão a ganhar espaço?</p>
+  <ul>
+    <li><strong>Burguesia:</strong> vive do comércio, precisa calcular, medir, prever lucros, navegar. Valoriza o saber <strong>prático e útil</strong> — e o mérito individual, não o nascimento nobre.</li>
+    <li><strong>Monarquias centralizadas:</strong> o poder se concentra no rei, enfraquecendo senhores feudais e, em parte, a autoridade política da Igreja. Surge o <strong>Estado moderno</strong>, que precisa de administração racional, leis e impostos.</li>
+    <li><strong>Renascimento:</strong> volta à cultura greco-romana e ao ser humano como centro (antropocentrismo) — detalhado na Parte IV.</li>
+    <li><strong>Reformas religiosas:</strong> quebram o monopólio da Igreja Católica sobre a verdade; se há várias leituras da fé, a autoridade única perde força — também na Parte IV.</li>
+  </ul>
+</div>
+
+<h3>4. Sobre o que o homem moderno vai refletir (slide 3)</h3>
+<blockquote class="src">“No esteio de um profundo desenvolvimento científico, o homem vai refletir: sobre a sua capacidade de conhecimento, sobre os métodos de investigação da natureza, sobre as formas de organização social e política e, finalmente, vai enaltecer a razão autônoma como o grande bem da humanidade.”<cite>— slide 3</cite></blockquote>
+<p>“No esteio de” = <strong>apoiado em, na esteira de</strong>. Ou seja: é o desenvolvimento científico que puxa essas reflexões. São quatro frentes — e cada uma vira um grande tema da Filosofia Moderna:</p>
+<div class="tbl"><table>
+  <tr><th>Frente de reflexão (slide 3)</th><th>Pergunta de fundo</th><th>Onde isso vai dar <span class="muted">(complemento)</span></th></tr>
+  <tr><td>1. Capacidade de conhecimento</td><td>O que podemos conhecer? Como saber se algo é verdadeiro?</td><td><strong>Teoria do conhecimento</strong> (epistemologia): Racionalismo (Descartes) × Empirismo (Bacon, Locke, Hume)</td></tr>
+  <tr><td>2. Métodos de investigação da natureza</td><td>Qual o caminho seguro para investigar o mundo?</td><td><strong>Método científico</strong>: experimentação, observação, matematização (Galileu, Bacon, Descartes, Newton)</td></tr>
+  <tr><td>3. Organização social e política</td><td>De onde vem o poder? Por que obedecemos?</td><td><strong>Contratualismo</strong> (Hobbes, Locke, Rousseau) e a teoria do Estado moderno</td></tr>
+  <tr><td>4. Razão autônoma</td><td>A razão precisa de tutela?</td><td>Culmina no <strong>Iluminismo</strong> (séc. XVIII)</td></tr>
+</table></div>
+
+<div class="box def">
+  <span class="lbl">Definição-chave</span>
+  <p><strong>Autonomia</strong> (grego <em>autós</em> = próprio + <em>nómos</em> = lei) = dar a si mesmo a própria lei. <strong>Razão autônoma</strong> é a razão que <strong>não depende de uma autoridade externa</strong> (Igreja, tradição, Aristóteles) para decidir o que é verdadeiro: ela examina, testa e julga por conta própria.</p>
+  <p>O oposto é <strong>heteronomia</strong> (<em>héteros</em> = outro): receber a lei de fora.</p>
+</div>
+
+<div class="vs">
+  <div class="side"><h5>Razão em Tomás (medieval)</h5><ul><li>Poderosa, mas <strong>subordinada</strong> à fé</li><li>O destino da investigação já está dado (confirmar a fé)</li><li>Autoridades: Escrituras, Igreja, Aristóteles</li></ul></div>
+  <div class="arrow">→</div>
+  <div class="side"><h5>Razão autônoma (moderna)</h5><ul><li><strong>Independente</strong>: é juíza de si mesma</li><li>O resultado não está dado: vale o que for demonstrado</li><li>Autoridades: método, experiência, cálculo</li></ul></div>
+</div>
+<div class="box warn"><span class="lbl">Cuidado</span><p>“Razão autônoma” <strong>não</strong> significa que os modernos eram ateus. Descartes, Galileu e Newton eram homens de fé. A mudança é que a <strong>fé deixa de ser o critério para julgar questões sobre a natureza</strong>.</p></div>
+
+<!-- ---------- PARTE III ---------- -->
+<div class="part-banner" id="selo">
+  <span class="kicker">Parte III · Slide 4</span>
+  <h3><em>O Sétimo Selo</em> (Ingmar Bergman, 1957)</h3>
+  <p>Um filme sobre a Idade Média que ajuda a entender o nascimento da mentalidade moderna.</p>
+</div>
+
+<div class="box mat">
+  <span class="lbl">Do material</span>
+  <p>O slide 4 traz: <strong>“O sétimo selo (filme de Ingmar Bergman, 1957) — Diálogo de Antonius Block com a Morte”</strong>, um link do YouTube e uma foto em preto e branco da famosa cena em que o cavaleiro e a Morte jogam <strong>xadrez</strong> à beira-mar.</p>
+</div>
+
+<div class="box comp">
+  <span class="lbl">Complemento</span>
+  <p><span class="comp-tag">Complemento para melhor compreensão:</span> o slide não explica o filme, então aqui vai o essencial.</p>
+  <ul>
+    <li><strong>Enredo:</strong> o cavaleiro <strong>Antonius Block</strong> volta das Cruzadas para a Suécia, devastada pela <strong>peste</strong>. A Morte vem buscá-lo, e ele a desafia para uma <strong>partida de xadrez</strong>, ganhando tempo para buscar uma resposta.</li>
+    <li><strong>O que ele busca:</strong> numa cena famosa, Block se confessa sem perceber que quem ouve é a própria Morte. Ele diz, em essência, que <strong>não quer fé nem suposições — quer conhecimento</strong>; quer que Deus se mostre, em vez de permanecer em silêncio.</li>
+    <li><strong>O título:</strong> vem do Apocalipse bíblico — quando o sétimo selo é aberto, faz-se <strong>silêncio no céu</strong>. O “silêncio de Deus” é o tema do filme.</li>
+  </ul>
+</div>
+
+<h4>Por que o professor colocou esse filme aqui?</h4>
+<p>A interpretação mais provável: o cavaleiro representa a <strong>passagem de uma mentalidade para outra</strong>.</p>
+<pre class="schema">
+  <span class="hb">Certeza medieval</span>            <span class="hl">Crise</span>                         <span class="hg">Exigência moderna</span>
+  "creio porque a Igreja  ──▶  a peste, a guerra e o   ──▶  "quero CONHECER,
+   ensina; o mundo tem         silêncio de Deus abalam       não só crer" →
+   ordem e sentido"            a confiança                   busca de provas,
+                                                             de certeza racional
+</pre>
+<div class="box ex"><span class="lbl">Conexão com a aula</span><p>Compare Block com Tomás. Para Tomás, a razão <strong>confirmava</strong> a fé com tranquilidade (as 5 vias). Block já <strong>não se contenta</strong>: a fé sem demonstração não lhe basta. Esse desconforto — querer <strong>certeza</strong> em vez de autoridade — é o mesmo que move a Filosofia Moderna (pense na dúvida metódica de Descartes, que busca uma verdade absolutamente certa).</p></div>
+<div class="box warn"><span class="lbl">Cuidado com a data</span><p>O filme se passa na <strong>Idade Média</strong>, mas foi feito em <strong>1957</strong>. É um olhar do século XX sobre a crise medieval — use-o como <strong>símbolo</strong>, não como documento histórico.</p></div>
+
+<!-- ---------- PARTE IV ---------- -->
+<div class="part-banner" id="revolucao">
+  <span class="kicker">Parte IV · Slides 5 a 10</span>
+  <h3>A Revolução Científica</h3>
+  <p>O coração do conteúdo: o que foi, quando, por que aconteceu, o que mudou e quem fez.</p>
+</div>
+
+<h3>1. O que foi a Revolução Científica</h3>
+<blockquote class="src">“A Revolução Científica iniciou no século XV um conhecimento mais estruturado e prático, desenvolvendo formas empíricas de se constatar os fatos.”<cite>— slide 5</cite></blockquote>
+<blockquote class="src">“A Revolução Científica tornou o conhecimento mais estruturado e mais prático, absorvendo o empirismo como mecanismo para se consolidar as constatações.”<cite>— slide 6</cite></blockquote>
+<p>Três palavras resumem os slides 5 e 6. Entenda cada uma:</p>
+<div class="grid3">
+  <div class="card"><span class="meta">1</span><h5>Estruturado</h5><p>Organizado por um <strong>método</strong>: passos definidos para investigar, e não opiniões soltas ou citações de autoridade.</p></div>
+  <div class="card"><span class="meta">2</span><h5>Prático</h5><p>Voltado a <strong>resultados úteis</strong>: navegação, engenharia, medicina, instrumentos (telescópio, microscópio, relógio).</p></div>
+  <div class="card"><span class="meta">3</span><h5>Empírico</h5><p>Os fatos são <strong>constatados pela experiência</strong> — observação, medição, experimento — e não apenas deduzidos de textos.</p></div>
+</div>
+<div class="box def">
+  <span class="lbl">Definição</span>
+  <p><strong>Empirismo</strong> (grego <em>empeiría</em> = experiência): a ideia de que o conhecimento vem da <strong>experiência sensível</strong>. Nos slides, a palavra é usada no sentido amplo de “usar a experiência como mecanismo para confirmar as constatações”.</p>
+</div>
+<div class="box warn">
+  <span class="lbl">Pegadinha de vocabulário</span>
+  <p>“Empírico” (qualquer coisa baseada em experiência) ≠ <strong>Empirismo</strong> como <strong>corrente filosófica</strong> (Bacon, Locke, Hume), que afirma que <em>todo</em> conhecimento vem da experiência. Descartes, por exemplo, fazia experimentos, mas <strong>não</strong> era empirista: era <strong>racionalista</strong>. Na prova, veja em qual sentido a palavra aparece.</p>
+</div>
+
+<h3>2. Antes e depois: a ruptura</h3>
+<blockquote class="src">“Até a Idade Média, o conhecimento humano estava muito atrelado ao modo de concepção da vida que a religiosidade propagava. A ciência, por sua vez, estava muito atrelada à Filosofia e possuía suas restrições.”<cite>— slide 5</cite></blockquote>
+<blockquote class="src">“Esse período marcou uma ruptura com as práticas ditas científicas da Idade Média, fase em que a Igreja Católica ditava o conhecimento de acordo com os preceitos religiosos.”<cite>— slide 6</cite></blockquote>
+<div class="vs">
+  <div class="side"><h5>Conhecimento medieval</h5><ul><li>Atrelado à <strong>religiosidade</strong></li><li>Ciência “dentro” da Filosofia, com <strong>restrições</strong></li><li>A <strong>Igreja ditava</strong> o que era verdadeiro</li><li>Influências <strong>místicas</strong></li></ul></div>
+  <div class="arrow">→</div>
+  <div class="side"><h5>Conhecimento moderno</h5><ul><li>Estruturado e <strong>prático</strong></li><li>Ciência ganha <strong>ferramentas</strong> próprias</li><li><strong>Comprovação empírica</strong></li><li>Aceita como <strong>importante</strong> para a nova sociedade</li></ul></div>
+</div>
+<div class="box comp">
+  <span class="lbl">Complemento</span>
+  <p><span class="comp-tag">Complemento para melhor compreensão:</span> “ciência atrelada à Filosofia” quer dizer que, na Idade Média (e até Newton), o estudo da natureza se chamava <strong>filosofia natural</strong>. Não havia “física” separada da filosofia. A Revolução Científica é justamente o processo em que a ciência ganha <strong>método próprio</strong> e começa a se separar da filosofia e da teologia. O livro mais famoso de Newton se chama, não por acaso, <em>Princípios Matemáticos da <strong>Filosofia Natural</strong></em> (1687).</p>
+</div>
+<div class="box warn"><span class="lbl">Não exagere a ruptura</span><p>Os slides falam em “ruptura”, e é isso que se cobra. Mas lembre da Parte I: a Idade Média <strong>usava a razão</strong> (Tomás é prova disso) e teve universidades e estudiosos importantes. A diferença não é “razão × ignorância”, e sim <strong>quem tem a última palavra</strong>: a autoridade ou a demonstração.</p></div>
+
+<h3>3. Quando aconteceu (atenção às datas)</h3>
+<div class="box mat">
+  <span class="lbl">Do material</span>
+  <p>Slide 5: “o florescer de novas concepções <strong>a partir do século XV</strong> permitiu uma reformulação no modo de se constatar as coisas. A nova forma de pensar, comprovar e, principalmente, fazer ciência prosperou-se intensamente em um período que se prolongou <strong>até o fim do século XVI</strong>.”</p>
+  <p>Slide 6: “o termo Revolução Científica só foi criado <strong>em 1939</strong> por <strong>Alexandre Koyré</strong>.”</p>
+</div>
+<div class="box comp">
+  <span class="lbl">Complemento — divergência de datas</span>
+  <p><span class="comp-tag">Complemento para melhor compreensão:</span> a maioria dos livros didáticos e das provas situa a Revolução Científica entre os <strong>séculos XVI e XVII</strong>, com dois marcos clássicos:</p>
+  <ul>
+    <li><strong>1543</strong> — Copérnico publica <em>Das revoluções das esferas celestes</em> (heliocentrismo);</li>
+    <li><strong>1687</strong> — Newton publica os <em>Principia</em> (gravitação universal).</li>
+  </ul>
+  <p>Ou seja, Galileu, Kepler, Bacon, Descartes e Newton — os nomes mais importantes — são do <strong>século XVII</strong>, depois do “fim do século XVI” citado no slide. A leitura mais provável é que o slide chame de “início” as <strong>raízes</strong> do século XV (Renascimento, imprensa). Para a prova: <strong>raízes no séc. XV; auge nos séc. XVI–XVII</strong>. É comum ver a expressão “Revolução Científica do século XVII”.</p>
+</div>
+<div class="timeline">
+  <div class="tl out"><span class="y">c. 1450</span><p>Gutenberg desenvolve a imprensa de tipos móveis <span class="muted">(complemento)</span></p></div>
+  <div class="tl out"><span class="y">1463–1471</span><p>Marsílio Ficino traduz para o latim os escritos atribuídos a Hermes Trismegisto <span class="muted">(complemento)</span></p></div>
+  <div class="tl out"><span class="y">1517</span><p>Início da Reforma Protestante (Lutero) <span class="muted">(complemento)</span></p></div>
+  <div class="tl"><span class="y">1543</span><p><strong>Copérnico</strong> — heliocentrismo (marco inicial clássico)</p></div>
+  <div class="tl"><span class="y">1609–1619</span><p><strong>Kepler</strong> — órbitas elípticas dos planetas <span class="muted">(complemento: Kepler não está nos slides)</span></p></div>
+  <div class="tl"><span class="y">1610</span><p><strong>Galileu</strong> publica observações com o telescópio (luas de Júpiter, relevo da Lua)</p></div>
+  <div class="tl"><span class="y">1620</span><p><strong>Bacon</strong> — <em>Novum Organum</em> (método indutivo)</p></div>
+  <div class="tl"><span class="y">1633</span><p>Galileu é condenado pela Inquisição</p></div>
+  <div class="tl"><span class="y">1637</span><p><strong>Descartes</strong> — <em>Discurso do Método</em></p></div>
+  <div class="tl"><span class="y">1668</span><p><strong>Redi</strong> — experimento contra a geração espontânea de larvas</p></div>
+  <div class="tl"><span class="y">1687</span><p><strong>Newton</strong> — <em>Principia</em> (marco final clássico)</p></div>
+  <div class="tl out"><span class="y">1939</span><p><strong>Koyré</strong> cria o termo “Revolução Científica” (do slide 6)</p></div>
+</div>
+<p class="cap">Linha do tempo. Datas em cinza: contexto e complemento. Datas de Copérnico, Galileu, Bacon, Descartes, Redi e Newton também são complemento (os slides citam os nomes, não as datas).</p>
+<div class="box star"><span class="lbl">Detalhe que cai</span><p>O <strong>nome</strong> “Revolução Científica” é <strong>posterior</strong> aos acontecimentos (criado em 1939 por Koyré, historiador da ciência). Os cientistas do século XVII não diziam “estamos fazendo a Revolução Científica” — assim como ninguém na Idade Média dizia “vivo na Idade Média”. São rótulos criados depois por historiadores.</p></div>
+
+<h3>4. Os fatores que impulsionaram a Revolução Científica</h3>
+<p>Os slides 7, 8 e 9 apresentam um conjunto de “movimentos sociais, culturais e religiosos” que contribuíram para a Revolução Científica. Primeiro, a visão geral:</p>
+<pre class="schema">
+  RENASCIMENTO ──────┐  volta à cultura greco-romana; teocentrismo → antropocentrismo
+  HUMANISMO ─────────┤  pensamento mais crítico; valorização do ser humano
+  IMPRENSA ──────────┼──▶  <span class="hl">REVOLUÇÃO CIENTÍFICA</span>
+  REFORMA PROTEST. ──┤  enfraquece o modo místico da Igreja de determinar o saber
+  HERMETISMO ────────┘  incentiva a matemática para demonstrar verdades
+</pre>
+<p class="cap">Os cinco fatores dos slides 7–9 convergindo.</p>
+
+<h4>4.1 Renascimento (slide 7)</h4>
+<blockquote class="src">“Aquele era o período do Renascimento, uma fase que pregava a volta da cultura Greco-romana e propagava a mudança de orientação do teocentrismo para o antropocentrismo.”<cite>— slide 7</cite></blockquote>
+<div class="grid2">
+  <div class="box def" style="margin:0"><span class="lbl">Teocentrismo</span><p><em>Theós</em> = Deus. <strong>Deus no centro</strong> de tudo: da explicação do mundo, da arte, do sentido da vida. Típico da Idade Média.</p></div>
+  <div class="box def" style="margin:0"><span class="lbl">Antropocentrismo</span><p><em>Ánthropos</em> = ser humano. <strong>O ser humano no centro</strong>: suas capacidades, seu corpo, sua razão, sua vida na Terra ganham valor.</p></div>
+</div>
+<div class="box warn"><span class="lbl">Pegadinha clássica</span><p>Antropocentrismo <strong>não</strong> significa abandonar Deus. Os renascentistas continuavam cristãos, pintavam temas religiosos e trabalhavam para papas. O que muda é o <strong>foco</strong>: o ser humano passa a ser visto como <strong>capaz</strong> e digno de estudo. E não confunda: <strong>antropocentrismo</strong> (humano no centro, ideia cultural) ≠ <strong>geocentrismo</strong> (Terra no centro do universo, ideia astronômica).</p></div>
+
+<h4>4.2 Humanismo (slide 7)</h4>
+<blockquote class="src">“Outra característica era o humanismo, uma corrente de pensamento interessada em um pensamento mais crítico e, principalmente, valorizava mais os homens. Tais abordagens mudaram muito o pensamento humano.”<cite>— slide 7</cite></blockquote>
+<p>O humanismo tem dois traços apontados pelo slide: <strong>(1)</strong> pensamento mais <strong>crítico</strong> (questionar, ler as fontes originais, não aceitar só porque a tradição diz) e <strong>(2)</strong> <strong>valorização do ser humano</strong>.</p>
+<div class="box comp"><span class="lbl">Complemento</span><p><span class="comp-tag">Complemento para melhor compreensão:</span> os humanistas eram estudiosos dos textos clássicos gregos e latinos. Ao comparar manuscritos e voltar aos originais, desenvolveram um hábito de <strong>crítica</strong> que depois foi levado para o estudo da natureza. O ideal humanista era o do ser humano capaz de se aperfeiçoar pelo estudo — o que abre caminho para confiar na <strong>razão humana</strong>.</p></div>
+
+<h4>4.3 As novas ferramentas da ciência (slide 8)</h4>
+<blockquote class="src">“A ciência ganhou muitas novas ferramentas. Passou a ser mais aceita e vista como importante para um novo tipo de sociedade que nascia. As comprovações empíricas ganharam espaço e reduziram as influências místicas da Idade Média.”<cite>— slide 8 (o original repete “das influências das influências”, um erro de digitação)</cite></blockquote>
+<p>Repare na relação: a ciência cresce porque é <strong>útil para a nova sociedade</strong> (burguesa, comercial, navegadora). É uma relação de mão dupla — a sociedade muda a ciência, e a ciência muda a sociedade.</p>
+
+<h4>4.4 A imprensa de Gutenberg (slide 8)</h4>
+<blockquote class="src">“O conhecimento ganhou impulso para ser difundido com a invenção de Johannes Gutenberg, a imprensa. A capacidade de reproduzir livros com exatidão e espalhá-los por vários lugares foi fundamental para a Revolução Científica na medida em que restringia as possibilidades de releituras e interpretações equivocadas dos escritos.”<cite>— slide 8</cite></blockquote>
+<p>O slide aponta <strong>duas</strong> contribuições da imprensa:</p>
+<ol>
+  <li><strong>Difusão:</strong> livros espalhados “por vários lugares” → o conhecimento circula, cientistas de países diferentes leem as mesmas obras e dialogam.</li>
+  <li><strong>Exatidão:</strong> reprodução idêntica → menos erros e versões divergentes.</li>
+</ol>
+<div class="box comp"><span class="lbl">Complemento — por que “exatidão” importa tanto</span><p><span class="comp-tag">Complemento para melhor compreensão:</span> antes da imprensa, os livros eram <strong>copiados à mão</strong>, normalmente por monges. Cada cópia podia introduzir erros, que se acumulavam de cópia em cópia (como no “telefone sem fio”). Para a ciência, isso é gravíssimo: uma tabela astronômica, um número ou um desenho anatômico copiados errado estragam tudo. Com a imprensa, <strong>mil leitores veem exatamente a mesma tabela e o mesmo diagrama</strong> — e podem conferir e criticar os mesmos dados. É isso que a expressão “restringia as possibilidades de releituras e interpretações equivocadas” quer dizer.</p></div>
+<div class="box ex"><span class="lbl">Analogia</span><p>A imprensa foi para o século XV algo parecido com o que a internet foi para o fim do século XX: <strong>barateou e acelerou</strong> a circulação de informação e tirou o controle do conhecimento de poucas mãos.</p></div>
+
+<h4>4.5 A Reforma Protestante (slide 9)</h4>
+<blockquote class="src">“O modo místico da Igreja Católica de determinar o conhecimento perdeu ainda mais espaço com a Reforma Protestante. Os reformistas eram favoráveis à leitura da Bíblia em todas as línguas e também acreditavam que as descobertas da ciência eram válidas para apreciar a existência de Deus.”<cite>— slide 9</cite></blockquote>
+<pre class="schema">
+  Reforma Protestante
+     ├─▶ Bíblia em todas as línguas  ──▶ cada um lê e interpreta ──▶ <span class="hl">autoridade única enfraquece</span>
+     └─▶ ciência como forma de apreciar Deus ──▶ estudar a natureza = admirar a obra do Criador
+</pre>
+<div class="box comp"><span class="lbl">Complemento</span><p><span class="comp-tag">Complemento para melhor compreensão:</span> a Reforma começou em <strong>1517</strong>, com Martinho Lutero. A leitura da Bíblia na <strong>língua do povo</strong> (vernácula), em vez do latim, junto com a imprensa, estimulou a alfabetização e a <strong>interpretação individual</strong>. Quando uma sociedade aceita que há mais de uma leitura legítima, o argumento “é verdade porque a autoridade disse” perde força — e isso favorece a razão autônoma. Um cuidado: a relação dos reformadores com a ciência <strong>não foi só de apoio</strong>; há relatos de críticas de Lutero ao heliocentrismo. O slide destaca o lado favorável, que é o mais cobrado.</p></div>
+
+<h4>4.6 O hermetismo (slide 9)</h4>
+<blockquote class="src">“No meio a toda essa efervescência favorável à Revolução Científica, o hermetismo também apresentou sua parcela de contribuição para o progresso do conhecimento. Usando ideias quase mágicas, apoiava-se e incentivava no uso da matemática para demonstrar as verdades. Com um novo horizonte, a matemática ganhou espaço e se desenvolveu com grande relevância para o desenvolvimento de um método científico mais rigoroso e crítico.”<cite>— slide 9</cite></blockquote>
+<div class="box def"><span class="lbl">Definição (nota de rodapé do slide 9)</span><p><strong>Hermetismo</strong> ou hermeticismo é o estudo e prática da filosofia oculta e da magia associados a escritos atribuídos a <strong>Hermes Trismegisto</strong> (“Hermes Três-Vezes-Grande”), uma divindade sincrética que combina aspectos do deus grego <strong>Hermes</strong> e do deus egípcio <strong>Thoth</strong>.</p></div>
+<p>Este é o fator mais <strong>surpreendente</strong>: uma tradição mágica ajudou a ciência. Como? O raciocínio é:</p>
+<ol class="steps">
+  <li>Os herméticos acreditavam que o universo tinha uma <strong>harmonia oculta</strong>, expressa em <strong>números</strong> e proporções.</li>
+  <li>Por isso, incentivavam o uso da <strong>matemática</strong> para “demonstrar as verdades” do cosmos.</li>
+  <li>A matemática ganhou prestígio e “um novo horizonte”.</li>
+  <li>Resultado: ela se tornou peça central de um <strong>método científico mais rigoroso e crítico</strong>.</li>
+</ol>
+<div class="box def"><span class="lbl">Sincrético</span><p>Que <strong>mistura</strong> elementos de tradições diferentes. Hermes Trismegisto junta um deus grego e um egípcio.</p></div>
+<div class="box deep"><span class="lbl">Aprofundamento</span><p><span class="comp-tag">Complemento para melhor compreensão:</span> há casos concretos dessa mistura de ciência e esoterismo. Copérnico, ao defender o Sol no centro, cita Trismegisto (que chamava o Sol de “deus visível”). Kepler buscava a “harmonia do mundo” em proporções musicais e geométricas. Newton escreveu muito sobre <strong>alquimia</strong>. A ideia de que o hermetismo foi decisivo é associada à historiadora <strong>Frances Yates</strong> e é <strong>debatida</strong> entre historiadores — mas o ponto do slide (a valorização da matemática) é o que importa para a prova.</p></div>
+<div class="box ex"><span class="lbl">Curiosidade que ajuda a memorizar</span><p>A palavra “<strong>hermético</strong>” (fechado, vedado — “pote hermético”) vem de Hermes Trismegisto: dizia-se que ele inventou um selo mágico que fechava recipientes perfeitamente. Saber oculto, fechado para não iniciados = hermético.</p></div>
+
+<h3>5. Os efeitos da Revolução Científica (slide 10)</h3>
+<blockquote class="src">“Os efeitos da Revolução Científica foram incontáveis e mudaram significativamente a história da humanidade. Provou-se que a Terra é que girava em torno do Sol, a física explicou diversos comportamentos da natureza, a matemática descreveu verdades e o humanismo tornou os pensamentos mais críticos, por exemplo.”<cite>— slide 10</cite></blockquote>
+<div class="grid2">
+  <div class="card"><span class="meta">ASTRONOMIA</span><h5>Heliocentrismo</h5><p>A Terra gira em torno do Sol, e não o contrário. A Terra deixa de ser o centro do universo.</p></div>
+  <div class="card"><span class="meta">FÍSICA</span><h5>Leis da natureza</h5><p>A física passa a explicar diversos comportamentos naturais (queda dos corpos, movimento dos planetas, luz).</p></div>
+  <div class="card"><span class="meta">MATEMÁTICA</span><h5>Linguagem da natureza</h5><p>A matemática “descreve verdades”: fenômenos passam a ser expressos em equações e medidas.</p></div>
+  <div class="card"><span class="meta">PENSAMENTO</span><h5>Espírito crítico</h5><p>O humanismo torna o pensamento mais crítico: duvidar, testar, conferir.</p></div>
+</div>
+<pre class="schema">
+  <span class="hb">GEOCENTRISMO</span> (Aristóteles / Ptolomeu)       <span class="hl">HELIOCENTRISMO</span> (Copérnico)
+
+   centro: TERRA, imóvel                       centro: SOL
+   ao redor: Lua, Mercúrio, Vênus,             ao redor: Mercúrio, Vênus,
+             SOL, Marte, Júpiter, Saturno                TERRA (+ Lua), Marte,
+   por fora: esfera das estrelas fixas                   Júpiter, Saturno
+                                               a Terra gira em torno de si
+   cosmo FECHADO e hierárquico                 e em torno do Sol
+
+   Terra (imperfeita) ≠ céus (perfeitos)  ──▶  Terra = um planeta como os outros
+</pre>
+<p class="cap">Esquema simplificado: o que está no centro muda.</p>
+<div class="box comp">
+  <span class="lbl">Complemento — “provou-se” com cuidado</span>
+  <p><span class="comp-tag">Complemento para melhor compreensão:</span> o slide diz que “provou-se” que a Terra gira em torno do Sol. Historicamente foi um processo longo:</p>
+  <ul>
+    <li><strong>Copérnico (1543)</strong> <em>propôs</em> o modelo, mas sem prova observacional decisiva;</li>
+    <li><strong>Galileu (1610)</strong> trouxe <em>evidências</em> com o telescópio (luas girando em torno de Júpiter, fases de Vênus), que enfraqueciam o geocentrismo;</li>
+    <li><strong>Kepler</strong> descobriu que as órbitas são <em>elípticas</em>, e <strong>Newton</strong> <em>explicou</em> por que (gravitação universal);</li>
+    <li>provas <em>diretas</em> do movimento da Terra vieram só nos séculos XVIII e XIX.</li>
+  </ul>
+  <p>Na prova, “a Revolução Científica consolidou o heliocentrismo” é a formulação mais segura.</p>
+</div>
+<div class="box star"><span class="lbl">O efeito filosófico mais profundo</span><p><span class="comp-tag">Complemento para melhor compreensão:</span> tirar a Terra do centro não mudou só a astronomia. Lembra da escada de Tomás, com tudo ordenado e com finalidade? Se a Terra é só mais um planeta, o <strong>cosmo hierárquico e fechado</strong> desmorona. Koyré resumiu essa passagem como a ida “<strong>do mundo fechado ao universo infinito</strong>”. A natureza vira uma <strong>máquina</strong> regida por leis matemáticas (visão <strong>mecanicista</strong>) — e a pergunta “para quê?” (finalidade) dá lugar a “como funciona?”.</p></div>
+
+<h3>6. Os grandes nomes do período (slide 10)</h3>
+<div class="box mat"><span class="lbl">Do material</span><p>“Entre os grandes nomes do período que deram suas contribuições para o avanço da ciência estão: <strong>Isaac Newton, Galileu Galilei, René Descartes, Francis Bacon, Nicolau Copérnico, Louis Pasteur e Francesco Redi</strong>.”</p></div>
+<p>O slide apenas cita os nomes. As contribuições e datas abaixo são <span class="comp-tag">Complemento para melhor compreensão:</span> — ordenadas cronologicamente, não na ordem do slide.</p>
+<div class="tbl"><table>
+  <tr><th>Nome</th><th>Época</th><th>Contribuição principal</th><th>Palavra-chave para a prova</th></tr>
+  <tr><td>Nicolau Copérnico</td><td>1473–1543</td><td>Propôs o modelo <strong>heliocêntrico</strong></td><td>Heliocentrismo</td></tr>
+  <tr><td>Francis Bacon</td><td>1561–1626</td><td>Defendeu a <strong>experimentação</strong> e o método <strong>indutivo</strong>; criticou os “ídolos” (preconceitos) que atrapalham o conhecimento; associado à ideia de que “saber é poder”</td><td>Empirismo, indução</td></tr>
+  <tr><td>Galileu Galilei</td><td>1564–1642</td><td>Usou o <strong>telescópio</strong> na astronomia; uniu <strong>experimento e matemática</strong>; defendeu Copérnico e foi condenado pela Inquisição (1633)</td><td>Método experimental, matematização</td></tr>
+  <tr><td>René Descartes</td><td>1596–1650</td><td>Buscou um <strong>método</strong> seguro baseado na razão; <strong>dúvida metódica</strong>; “penso, logo existo”; criou a geometria analítica</td><td>Racionalismo, dedução</td></tr>
+  <tr><td>Francesco Redi</td><td>1626–1697</td><td>Experimento com carne em frascos abertos e cobertos: larvas só surgiam onde moscas pousavam → contra a <strong>geração espontânea</strong></td><td>Experimento controlado</td></tr>
+  <tr><td>Isaac Newton</td><td>1643–1727</td><td><strong>Gravitação universal</strong> e leis do movimento; grande síntese da física</td><td>Síntese, mecanicismo</td></tr>
+  <tr><td>Louis Pasteur</td><td>1822–1895</td><td>Experimento dos frascos “pescoço de cisne”: derrubou de vez a <strong>geração espontânea</strong>; microbiologia</td><td>⚠ Século XIX</td></tr>
+</table></div>
+<div class="box doubt"><span class="lbl">Observação sobre Pasteur</span><p><strong>Louis Pasteur viveu no século XIX</strong>, cerca de 150 anos depois de Newton — ele <strong>não</strong> faz parte do período da Revolução Científica no sentido estrito. A explicação mais provável para ele estar no slide é que ele é <strong>herdeiro direto</strong> do método experimental criado ali e completou o trabalho de <strong>Redi</strong> sobre a geração espontânea (os dois aparecem juntos, no fim da lista). Se uma questão perguntar sobre cientistas “da Revolução Científica dos séculos XVI–XVII”, <strong>não marque Pasteur</strong>.</p></div>
+<div class="box comp"><span class="lbl">Complemento — o nome que falta</span><p><span class="comp-tag">Complemento para melhor compreensão:</span> <strong>Johannes Kepler (1571–1630)</strong> não aparece no slide, mas é um dos nomes centrais do período: descobriu as <strong>três leis do movimento planetário</strong> (órbitas elípticas). Aparece com frequência em questões de física e de história da ciência.</p></div>
+
+<h3>7. A prévia do que vem: Bacon × Descartes</h3>
+<p>Dois nomes da lista do slide 10 são os <strong>fundadores das duas grandes correntes</strong> da Filosofia Moderna. Isso responde à primeira reflexão do slide 3 (“sobre a sua capacidade de conhecimento”).</p>
+<div class="box comp"><span class="lbl">Complemento</span><p><span class="comp-tag">Complemento para melhor compreensão:</span></p></div>
+<div class="vs" style="margin-top:-.4em">
+  <div class="side"><h5>Francis Bacon → EMPIRISMO</h5><ul><li>Conhecimento vem da <strong>experiência</strong></li><li>Método <strong>indutivo</strong>: de muitos casos particulares → lei geral</li><li>Ex.: observo que o ferro, o cobre e o ouro dilatam ao aquecer → metais dilatam com o calor</li><li>Continuadores: Locke, Hume</li></ul></div>
+  <div class="arrow">×</div>
+  <div class="side"><h5>René Descartes → RACIONALISMO</h5><ul><li>Conhecimento seguro vem da <strong>razão</strong></li><li>Método <strong>dedutivo</strong>: de princípios certos → conclusões</li><li>Os sentidos podem enganar; é preciso duvidar de tudo até achar algo indubitável</li><li>Continuadores: Espinosa, Leibniz</li></ul></div>
+</div>
+<div class="box ex"><span class="lbl">Ponto em comum com Galileu</span><p>Galileu mostra a <strong>síntese</strong> dos dois caminhos: experimenta (empírico) e expressa o resultado em linguagem matemática (racional). Ele dizia, em essência, que o livro da natureza está escrito em <strong>linguagem matemática</strong> — e é isso que o slide 10 quer dizer com “a matemática descreveu verdades”.</p></div>
+
+<div class="box mat"><span class="lbl">Fontes citadas no slide 10</span><p>RONAN, Colin A. <em>História Ilustrada da Ciência</em>. São Paulo: Círculo do Livro, 1987. · proquimica.iqm.unicamp.br/revcien.htm</p></div>
+</section>
+
+<!-- ================= 03 EXEMPLOS ================= -->
+<section class="block" id="exemplos">
+  <div class="sec-head"><span class="sec-num">03</span><h2>Exemplos e analogias</h2></div>
+  <p>Todas as analogias desta seção são <span class="comp-tag">Complemento para melhor compreensão:</span> — recursos para fixar o conteúdo do material.</p>
+
+  <div class="grid2">
+    <div class="box ex" style="margin:0"><span class="lbl">Tomás × modernos: o GPS</span><p>Tomás é como alguém que já sabe o destino (Deus) e usa a razão como <strong>GPS</strong> para traçar o caminho até lá. O moderno liga o GPS <strong>sem destino definido</strong>: vai aonde os dados e o método levarem.</p></div>
+    <div class="box ex" style="margin:0"><span class="lbl">Autoridade × demonstração: o árbitro e o VAR</span><p>Na Idade Média, valia a decisão do <strong>árbitro</strong> (a autoridade: Igreja, Aristóteles). Na modernidade, entra o <strong>VAR</strong>: a jogada é revista, medida, conferida — vale o que a evidência mostrar.</p></div>
+    <div class="box ex" style="margin:0"><span class="lbl">Cadeia de causas: a fila do refeitório</span><p>Cada pessoa da fila só anda porque a da frente andou. Se a fila fosse infinita e ninguém estivesse na frente sendo servido, <strong>ninguém andaria</strong>. É a lógica das vias 1 e 2.</p></div>
+    <div class="box ex" style="margin:0"><span class="lbl">Ser necessário: a bateria</span><p>Um celular, um fone e uma lanterna ligados em cadeia, um carregando o outro, só funcionam se, na ponta, houver uma <strong>fonte de energia própria</strong>. Os seres possíveis são os aparelhos; o ser necessário é a fonte (via 3).</p></div>
+    <div class="box ex" style="margin:0"><span class="lbl">Imprensa: o “telefone sem fio”</span><p>Copiar à mão é como o telefone sem fio: a mensagem se deforma a cada passagem. A imprensa é o <strong>“copiar e colar”</strong>: a mensagem chega igual a todos.</p></div>
+    <div class="box ex" style="margin:0"><span class="lbl">Hermetismo: o motivo errado, o resultado certo</span><p>É como alguém que começa a estudar estatística porque acredita em numerologia — e acaba virando um ótimo analista de dados. A crença mística levou à <strong>matemática</strong>, e a matemática ficou.</p></div>
+    <div class="box ex" style="margin:0"><span class="lbl">Teocentrismo → antropocentrismo: a câmera</span><p>Imagine uma câmera. No teocentrismo, ela aponta para <strong>o céu</strong>; no antropocentrismo, ela gira e enquadra <strong>o ser humano</strong> — sem que o céu deixe de existir.</p></div>
+    <div class="box ex" style="margin:0"><span class="lbl">Cosmo hierárquico × universo-máquina</span><p>O mundo de Tomás é como uma <strong>catedral</strong>: cada pedra tem lugar e sentido no conjunto. O mundo moderno é como um <strong>relógio</strong>: engrenagens que funcionam por leis, e a pergunta é como elas se movem.</p></div>
+  </div>
+</section>
+
+<!-- ================= 04 ESQUEMAS ================= -->
+<section class="block" id="esquemas">
+  <div class="sec-head"><span class="sec-num">04</span><h2>Esquemas e mapas mentais</h2></div>
+
+  <h3>Mapa 1 — A aula inteira</h3>
+<pre class="schema">
+                        <span class="hl">FILOSOFIA MODERNA: A APOLOGIA DA RAZÃO</span>
+                                       │
+    ┌──────────────────────────────────┼──────────────────────────────────┐
+    ▼                                  ▼                                  ▼
+ <span class="hb">ANTES (Idade Média)</span>             <span class="hb">CAUSAS DA MUDANÇA</span>                 <span class="hb">DEPOIS (Modernidade)</span>
+ Tomás de Aquino                 burguesia forte                    razão AUTÔNOMA
+ · 5 vias (a posteriori)         monarquias centralizadas           reflete sobre:
+ · causalidade (Aristóteles)     Renascimento + humanismo            · conhecimento
+ · mundo hierárquico             Reformas religiosas                 · método
+ · homem = corpo + alma          imprensa, hermetismo                · política
+ · razão SERVA da fé             ─────────────────────               · razão = grande bem
+                                 crise simbolizada por
+                                 "O Sétimo Selo"
+                                       │
+                                       ▼
+                             <span class="hg">REVOLUÇÃO CIENTÍFICA</span>
+             estruturada · prática · empírica · matemática
+             heliocentrismo · física · pensamento crítico
+       Copérnico · Bacon · Galileu · Descartes · Redi · Newton (· Pasteur)
+</pre>
+
+  <h3>Mapa 2 — As 5 vias em uma tela</h3>
+<pre class="schema">
+  O QUE EU VEJO NO MUNDO             O QUE ISSO EXIGE                 CONCLUSÃO
+  ─────────────────────────────      ──────────────────────────       ─────────────────────
+  1 coisas se MOVEM            ──▶   algo que move sem ser movido ──▶  Primeiro motor imóvel
+  2 CAUSAS geram efeitos       ──▶   uma causa não causada        ──▶  Primeira causa eficiente
+  3 seres NASCEM e MORREM      ──▶   um ser que não pode não ser  ──▶  Ser necessário
+  4 há MAIS e MENOS perfeito   ──▶   um máximo como medida        ──▶  Ser perfeitíssimo
+  5 a natureza tem ORDEM/FIM   ──▶   uma inteligência que dirige  ──▶  Governo supremo
+                                                                        ║
+                                   = "DEUS"  (todas: causalidade + empírico + hierarquia)
+</pre>
+
+  <h3>Mapa 3 — Como cada fator empurrou a ciência</h3>
+<div class="tbl"><table>
+  <tr><th>Fator</th><th>O que mudou</th><th>Efeito sobre o conhecimento</th></tr>
+  <tr><td>Renascimento</td><td>Volta ao greco-romano; teocentrismo → antropocentrismo</td><td>O ser humano e a natureza viram objetos dignos de estudo</td></tr>
+  <tr><td>Humanismo</td><td>Pensamento mais crítico; valorização do homem</td><td>Hábito de questionar e conferir</td></tr>
+  <tr><td>Imprensa</td><td>Livros reproduzidos com exatidão e espalhados</td><td>Difusão rápida; menos erros de cópia</td></tr>
+  <tr><td>Reforma Protestante</td><td>Bíblia em todas as línguas; ciência vista como forma de apreciar Deus</td><td>Enfraquece o controle da Igreja Católica sobre o saber</td></tr>
+  <tr><td>Hermetismo</td><td>Busca de verdades ocultas por meio de números</td><td>Valoriza a matemática → método mais rigoroso</td></tr>
+  <tr><td>Nova sociedade (burguesa)</td><td>Precisa de ciência útil</td><td>Ciência “mais aceita e vista como importante”</td></tr>
+</table></div>
+</section>
+
+<!-- ================= 05 PEGADINHAS ================= -->
+<section class="block" id="pegadinhas">
+  <div class="sec-head"><span class="sec-num">05</span><h2>Pontos de atenção e pegadinhas</h2></div>
+  <div class="tbl"><table>
+    <tr><th>Afirmação tentadora</th><th>Está certo?</th><th>Por quê</th></tr>
+    <tr><td>“A Idade Média rejeitava a razão.”</td><td>✗ Errado</td><td>Tomás usa a razão com rigor. O ponto é que ela era <strong>subordinada</strong> à fé.</td></tr>
+    <tr><td>“As 5 vias partem da ideia de Deus.”</td><td>✗ Errado</td><td>Partem do <strong>mundo sensível</strong> (empírico, <em>a posteriori</em>). Quem parte da ideia de Deus é o argumento ontológico de Anselmo.</td></tr>
+    <tr><td>“O primeiro motor é o que empurrou o mundo no começo dos tempos.”</td><td>⚠ Impreciso</td><td>É “primeiro” na <strong>ordem de dependência</strong>, não necessariamente no tempo.</td></tr>
+    <tr><td>“A 4ª via diz que Deus existe porque é perfeito.”</td><td>✗ Errado</td><td>Ela parte dos <strong>graus</strong> de perfeição que observamos e conclui que há um máximo.</td></tr>
+    <tr><td>“Para Tomás, o homem é uma alma presa no corpo.”</td><td>✗ Errado</td><td>Essa é a visão de Platão. Para Tomás, corpo (matéria) e alma (forma) formam <strong>uma unidade</strong>; isolados, “nada são”.</td></tr>
+    <tr><td>“Antropocentrismo = abandono de Deus.”</td><td>✗ Errado</td><td>É mudança de <strong>foco</strong>. Renascentistas e cientistas modernos eram, em geral, religiosos.</td></tr>
+    <tr><td>“Antropocentrismo e geocentrismo são a mesma coisa.”</td><td>✗ Errado</td><td>Antropo = <strong>ser humano</strong> no centro (cultura). Geo = <strong>Terra</strong> no centro (astronomia). Aliás, a modernidade é antropocêntrica e <strong>heliocêntrica</strong>.</td></tr>
+    <tr><td>“Os cientistas da época chamavam seu movimento de Revolução Científica.”</td><td>✗ Errado</td><td>O termo é de <strong>1939</strong>, criado por <strong>Alexandre Koyré</strong>.</td></tr>
+    <tr><td>“A Revolução Científica ocorreu no século XV.”</td><td>⚠ Depende</td><td>O slide diz “iniciou no séc. XV”. O auge (Galileu, Descartes, Newton) é no <strong>séc. XVII</strong>. Na dúvida, prefira XVI–XVII.</td></tr>
+    <tr><td>“Pasteur foi cientista da Revolução Científica.”</td><td>⚠ Cuidado</td><td>Ele está na lista do slide, mas viveu no <strong>séc. XIX</strong>.</td></tr>
+    <tr><td>“O hermetismo foi um obstáculo à ciência.”</td><td>✗ Segundo o slide, não</td><td>Mesmo com “ideias quase mágicas”, ele <strong>incentivou a matemática</strong>.</td></tr>
+    <tr><td>“A imprensa ajudou só porque barateou os livros.”</td><td>⚠ Incompleto</td><td>O slide destaca também a <strong>exatidão</strong> da reprodução (menos interpretações equivocadas).</td></tr>
+    <tr><td>“Todo cientista que faz experimentos é empirista.”</td><td>✗ Errado</td><td>Empirismo é uma <strong>corrente filosófica</strong>. Descartes experimentava e era racionalista.</td></tr>
+    <tr><td>“Razão autônoma = ateísmo.”</td><td>✗ Errado</td><td>Autônoma = <strong>não depende de autoridade externa</strong> para julgar a verdade.</td></tr>
+  </table></div>
+</section>
+
+<!-- ================= 06 PROVA ================= -->
+<section class="block" id="prova">
+  <div class="sec-head"><span class="sec-num">06</span><h2>O que mais cai em prova</h2></div>
+  <div class="box star">
+    <span class="lbl">Os temas campeões</span>
+    <ol>
+      <li><strong>Relação fé × razão</strong> na Idade Média (Escolástica, Tomás) em contraste com a razão autônoma moderna. É o eixo de comparação preferido do ENEM em filosofia.</li>
+      <li><strong>Teocentrismo → antropocentrismo</strong> e o papel do Renascimento/humanismo.</li>
+      <li><strong>Características da ciência moderna:</strong> experimentação, observação, matematização, método — com textos de Galileu, Bacon ou Descartes como base da questão.</li>
+      <li><strong>Heliocentrismo</strong> como símbolo da quebra da autoridade (Copérnico, Galileu e a Inquisição).</li>
+      <li><strong>Fatores históricos</strong>: imprensa, Reforma, burguesia — frequentemente em questões interdisciplinares com História.</li>
+      <li><strong>As 5 vias</strong>: reconhecer uma via a partir de um trecho (especialmente a 1ª — primeiro motor — e a 5ª — finalidade/ordem).</li>
+      <li><strong>Bacon × Descartes</strong> (empirismo/indução × racionalismo/dedução) como desdobramento.</li>
+    </ol>
+  </div>
+  <div class="box def"><span class="lbl">Como as questões costumam vir</span><p>Um <strong>trecho de texto</strong> (de um filósofo, cientista ou historiador) e a pergunta “o texto expressa…”. O segredo é identificar <strong>palavras-sinal</strong>:</p>
+    <ul>
+      <li>“autoridade”, “revelação”, “harmonia entre fé e razão” → <strong>pensamento medieval / Escolástica</strong></li>
+      <li>“experiência”, “observação”, “indução” → <strong>Bacon / empirismo</strong></li>
+      <li>“dúvida”, “método”, “evidência clara e distinta” → <strong>Descartes / racionalismo</strong></li>
+      <li>“linguagem matemática”, “experimento”, “telescópio” → <strong>Galileu</strong></li>
+      <li>“o homem como medida”, “dignidade humana”, “clássicos” → <strong>Renascimento / humanismo</strong></li>
+    </ul>
+  </div>
+
+  <h3>Teste-se</h3>
+  <p class="small muted">Questões de treino elaboradas para esta aula, no estilo das provas (não são questões oficiais). Tente responder antes de abrir.</p>
+
+  <details class="q"><summary>1. “Tudo o que se move é movido por outro; e não se pode proceder ao infinito.” O trecho resume qual via de Tomás de Aquino?</summary>
+    <div class="ans"><p><strong>1ª via — Primeiro motor imóvel.</strong> Palavras-sinal: “se move”, “movido por outro”, “não se pode proceder ao infinito”. Conclusão: existe um primeiro motor que move sem ser movido.</p></div></details>
+
+  <details class="q"><summary>2. Qual das alternativas indica corretamente o que as 5 vias têm em comum?
+    <span class="opts"><span>a) Partem da definição de Deus e deduzem sua existência.</span><span>b) Baseiam-se na autoridade das Escrituras.</span><span>c) Partem da experiência sensível e usam o princípio de causalidade.</span><span>d) Rejeitam a filosofia de Aristóteles.</span><span>e) Negam a hierarquia entre os seres.</span></span></summary>
+    <div class="ans"><p><strong>Alternativa c.</strong> O texto diz que todas têm em comum o princípio de causalidade (herdado de <strong>Aristóteles</strong> — por isso a “d” está errada), partem do <strong>empírico</strong> (a “a” descreve o argumento ontológico) e de um mundo <strong>hierarquicamente ordenado</strong> (a “e” é o contrário). A “b” está errada porque as vias são argumentos <strong>racionais</strong>.</p></div></details>
+
+  <details class="q"><summary>3. Explique por que, para Tomás, o ser humano é um “ser intermediário”.</summary>
+    <div class="ans"><p>Porque é composto de <strong>corpo (matéria)</strong> e <strong>alma (forma)</strong>. Pelo corpo, compartilha características com os seres inferiores (minerais, plantas, animais); pela alma racional, aproxima-se dos superiores (anjos e Deus). Está, portanto, no <strong>meio da hierarquia do universo</strong>. E corpo e alma, isolados, “nada são”: o ser humano é a unidade dos dois.</p></div></details>
+
+  <details class="q"><summary>4. Por que se diz que a Filosofia Moderna faz uma “apologia da razão”?</summary>
+    <div class="ans"><p>Porque ela <strong>defende e exalta</strong> a razão (apologia = defesa) como o grande bem da humanidade, e uma razão <strong>autônoma</strong>: capaz de conhecer a natureza, criar métodos e pensar a política sem depender da autoridade da Igreja ou da tradição. Na Idade Média, a razão existia, mas subordinada à fé.</p></div></details>
+
+  <details class="q"><summary>5. Cite dois motivos, segundo os slides, pelos quais a imprensa foi fundamental para a Revolução Científica.</summary>
+    <div class="ans"><p>(1) <strong>Difusão</strong>: permitiu espalhar livros por vários lugares. (2) <strong>Exatidão</strong>: reproduzia os livros com precisão, o que “restringia as possibilidades de releituras e interpretações equivocadas” — diferentemente das cópias manuais, sujeitas a erros.</p></div></details>
+
+  <details class="q"><summary>6. Como o hermetismo, uma tradição mágica, contribuiu para a ciência?</summary>
+    <div class="ans"><p>Apoiava e incentivava o uso da <strong>matemática para demonstrar verdades</strong>. Com isso, a matemática ganhou espaço e relevância e tornou-se base de um <strong>método científico mais rigoroso e crítico</strong>.</p></div></details>
+
+  <details class="q"><summary>7. Verdadeiro ou falso: “O termo Revolução Científica foi criado pelos próprios cientistas do século XVII, como Galileu e Newton.”</summary>
+    <div class="ans"><p><strong>Falso.</strong> O termo foi criado em <strong>1939</strong> pelo historiador <strong>Alexandre Koyré</strong>.</p></div></details>
+
+  <details class="q"><summary>8. Qual a diferença entre antropocentrismo e heliocentrismo? Os dois podem coexistir?</summary>
+    <div class="ans"><p><strong>Antropocentrismo</strong>: visão cultural que coloca o <strong>ser humano</strong> no centro das preocupações. <strong>Heliocentrismo</strong>: modelo astronômico que coloca o <strong>Sol</strong> no centro do sistema. Sim, coexistem — é justamente a combinação típica da modernidade. (O oposto do heliocentrismo é o geocentrismo; o oposto do antropocentrismo é o teocentrismo.)</p></div></details>
+
+  <details class="q"><summary>9. De que modo a Reforma Protestante contribuiu para a Revolução Científica, segundo o slide 9?</summary>
+    <div class="ans"><p>Fez o “modo místico da Igreja Católica de determinar o conhecimento” perder espaço: os reformistas defendiam a <strong>leitura da Bíblia em todas as línguas</strong> (quebrando o monopólio da interpretação) e acreditavam que as <strong>descobertas da ciência eram válidas para apreciar a existência de Deus</strong>.</p></div></details>
+
+  <details class="q"><summary>10. Desafio: por que a derrubada do geocentrismo afeta também a visão de mundo de Tomás de Aquino?</summary>
+    <div class="ans"><p>Porque a visão de Tomás pressupõe um <strong>cosmo hierárquico e fechado</strong>, em que cada ser ocupa seu lugar e tem sua finalidade, com a Terra no centro. Se a Terra é apenas mais um planeta e a natureza funciona por <strong>leis mecânicas e matemáticas</strong>, a imagem da “escada” ordenada e da finalidade (5ª via) perde força como explicação da natureza. A pergunta passa de “para quê?” a “como funciona?”.</p></div></details>
+</section>
+
+<!-- ================= 07 VÍDEOS ================= -->
+<section class="block" id="videos">
+  <div class="sec-head"><span class="sec-num">07</span><h2>Vídeos completos no YouTube</h2></div>
+  <p>Cada botão abre <strong>diretamente o vídeo</strong> (nunca uma busca ou um canal). Todos foram verificados em 22/09/2026 pelo serviço oficial do YouTube, que confirmou que existem e estão disponíveis, com título e canal abaixo. Vídeos podem sair do ar depois dessa data.</p>
+
+  <div class="vgroup">
+    <h4>Parte I · Tomás de Aquino, Escolástica e as 5 vias</h4>
+    <div class="vlist">
+      <a class="video" href="https://www.youtube.com/watch?v=Rl6-VUQNOso" target="_blank" rel="noopener"><span class="play"></span><span><span class="t">O que é a ESCOLÁSTICA | Tomás de Aquino | Filosofia Medieval | História da Filosofia</span><span class="c">Isto não é Filosofia (prof. Vitor Lima)</span></span><span class="go">ASSISTIR ↗</span></a>
+      <a class="video" href="https://www.youtube.com/watch?v=zEW6oahVAcI" target="_blank" rel="noopener"><span class="play"></span><span><span class="t">Cinco Vias que Provam a Existência de Deus em Tomás de Aquino</span><span class="c">Brasil Escola Oficial</span></span><span class="go">ASSISTIR ↗</span></a>
+      <a class="video" href="https://www.youtube.com/watch?v=s01sHsaackc" target="_blank" rel="noopener"><span class="play"></span><span><span class="t">FILOSOFIA MEDIEVAL | Santo Agostinho e São Tomás de Aquino | Filosofia – aula #5 | Extensivo Enem</span><span class="c">Não Perca a Cabeça</span></span><span class="go">ASSISTIR ↗</span></a>
+      <a class="video" href="https://www.youtube.com/watch?v=6C4_ltcebJA" target="_blank" rel="noopener"><span class="play"></span><span><span class="t">ESCOLÁSTICA: entenda TOMÁS DE AQUINO (5 vias)</span><span class="c">Básico de Filosofia</span></span><span class="go">ASSISTIR ↗</span></a>
+      <a class="video" href="https://www.youtube.com/watch?v=MRFzz76q5M0" target="_blank" rel="noopener"><span class="play"></span><span><span class="t">São Tomás de Aquino | FILOSOFIA</span><span class="c">Conceito Ilustrado</span></span><span class="go">ASSISTIR ↗</span></a>
+    </div>
+  </div>
+
+  <div class="vgroup">
+    <h4>Parte II e IV · Renascimento e Revolução Científica</h4>
+    <div class="vlist">
+      <a class="video" href="https://www.youtube.com/watch?v=VO8mCBrCADU" target="_blank" rel="noopener"><span class="play"></span><span><span class="t">A REVOLUÇÃO CIENTÍFICA e a CIÊNCIA MODERNA | Introdução à Filosofia Moderna | História da Filosofia</span><span class="c">Isto não é Filosofia (prof. Vitor Lima) — o mais alinhado com os slides</span></span><span class="go">ASSISTIR ↗</span></a>
+      <a class="video" href="https://www.youtube.com/watch?v=muZmHmijYFU" target="_blank" rel="noopener"><span class="play"></span><span><span class="t">REVOLUÇÃO CIENTÍFICA: TUDO O QUE VOCÊ PRECISA SABER</span><span class="c">Descomplica</span></span><span class="go">ASSISTIR ↗</span></a>
+      <a class="video" href="https://www.youtube.com/watch?v=GCHUUOqJRTs" target="_blank" rel="noopener"><span class="play"></span><span><span class="t">REVOLUÇÃO CIENTÍFICA – FILOSOFIA | ENEM POWER</span><span class="c">Dáskalos</span></span><span class="go">ASSISTIR ↗</span></a>
+      <a class="video" href="https://www.youtube.com/watch?v=kEQkm52Rbfs" target="_blank" rel="noopener"><span class="play"></span><span><span class="t">Revolução Científica do Século XVII – Idade Moderna – História Geral – Preparatório Enem</span><span class="c">Curso Dominantes Online — visão pela História</span></span><span class="go">ASSISTIR ↗</span></a>
+      <a class="video" href="https://www.youtube.com/watch?v=6NbSXIdObDk" target="_blank" rel="noopener"><span class="play"></span><span><span class="t">RENASCIMENTO | HISTÓRIA | QUER QUE DESENHE?</span><span class="c">Descomplica — contexto de Renascimento, humanismo e antropocentrismo</span></span><span class="go">ASSISTIR ↗</span></a>
+    </div>
+  </div>
+
+  <div class="vgroup">
+    <h4>Parte III · Material do professor (slide 4)</h4>
+    <div class="vlist">
+      <a class="video unv" href="https://www.youtube.com/watch?v=YknL-BWzSwY" target="_blank" rel="noopener"><span class="play"></span><span><span class="t">O Sétimo Selo — diálogo de Antonius Block com a Morte</span><span class="c">⚠ Link do slide 4, NÃO verificado: o YouTube recusou a checagem. Pode estar indisponível.</span></span><span class="go">ABRIR ↗</span></a>
+    </div>
+  </div>
+  <div class="box doubt"><span class="lbl">Sobre a ordem sugerida</span><p>Para esta aula: comece por <strong>“A Revolução Científica e a Ciência Moderna”</strong> (Isto não é Filosofia) e por <strong>“O que é a Escolástica”</strong> (mesmo canal) — os dois cobrem os dois arquivos. Os demais servem de reforço. As durações não foram conferidas.</p></div>
+</section>
+
+<!-- ================= 08 REVISÃO ================= -->
+<section class="block" id="revisao">
+  <div class="sec-head"><span class="sec-num">08</span><h2>Revisão final dos conceitos principais</h2></div>
+
+  <h3>Resumo em 12 frases</h3>
+  <ul class="checklist">
+    <li>Tomás de Aquino (séc. XIII, Escolástica) usa a razão para <strong>provar a existência de Deus</strong> — razão a serviço da fé.</li>
+    <li>As <strong>5 vias</strong>: primeiro motor imóvel; primeira causa eficiente; ser necessário; graus de perfeição; finalidade/governo supremo.</li>
+    <li>Todas usam o <strong>princípio de causalidade</strong> (Aristóteles), partem do <strong>empírico</strong> e supõem um mundo <strong>hierárquico</strong>.</li>
+    <li>O ser humano é um <strong>ser intermediário</strong>: corpo (matéria) + alma (forma), entre minerais/plantas/animais e anjos/Deus.</li>
+    <li><strong>Apologia da razão</strong> = defesa e exaltação da razão; a modernidade enaltece a <strong>razão autônoma</strong> como o grande bem da humanidade.</li>
+    <li>O colapso do feudalismo aparece em quatro evidências: <strong>burguesia, monarquias centralizadas, Renascimento e reformas religiosas</strong>.</li>
+    <li>O homem moderno reflete sobre: <strong>capacidade de conhecer, métodos de investigação, organização sociopolítica</strong> e a razão autônoma.</li>
+    <li><em>O Sétimo Selo</em> simboliza a crise da fé e o desejo de <strong>conhecer em vez de apenas crer</strong>.</li>
+    <li>A <strong>Revolução Científica</strong> tornou o conhecimento <strong>estruturado, prático e empírico</strong>, rompendo com a ciência ditada pela Igreja. Termo criado por <strong>Koyré em 1939</strong>.</li>
+    <li>Fatores: <strong>Renascimento</strong> (teo → antropocentrismo), <strong>humanismo</strong> (crítica), <strong>imprensa</strong> (difusão e exatidão), <strong>Reforma</strong> (Bíblia em todas as línguas), <strong>hermetismo</strong> (matemática).</li>
+    <li>Efeitos: <strong>heliocentrismo</strong>, física explicando a natureza, matemática descrevendo verdades, pensamento mais crítico.</li>
+    <li>Nomes: <strong>Copérnico, Bacon, Galileu, Descartes, Redi, Newton</strong> (e Pasteur, do séc. XIX, citado no slide).</li>
+  </ul>
+
+  <h3>Flashcards</h3>
+  <p class="small muted">Leia a pergunta, responda em voz alta e só depois abra.</p>
+  <div class="grid2">
+    <details class="q"><summary>Qual via usa “do nada, nada vem”?</summary><div class="ans"><p>A <strong>3ª</strong> — ser necessário e seres possíveis.</p></div></details>
+    <details class="q"><summary>Qual via usa o exemplo da flecha e do arqueiro?</summary><div class="ans"><p>A <strong>5ª</strong> — finalidade/governo supremo.</p></div></details>
+    <details class="q"><summary>O que é causa eficiente?</summary><div class="ans"><p>Aquilo que <strong>produz</strong> algo; o agente (o escultor, no exemplo da estátua).</p></div></details>
+    <details class="q"><summary>Hilemorfismo?</summary><div class="ans"><p>Teoria de que os seres são <strong>matéria + forma</strong>. No homem: corpo + alma.</p></div></details>
+    <details class="q"><summary>Autonomia × heteronomia?</summary><div class="ans"><p>Autonomia: dar-se a própria lei. Heteronomia: receber a lei de fora.</p></div></details>
+    <details class="q"><summary>Quem criou o termo “Revolução Científica” e quando?</summary><div class="ans"><p><strong>Alexandre Koyré</strong>, em <strong>1939</strong>.</p></div></details>
+    <details class="q"><summary>Quem foi Hermes Trismegisto?</summary><div class="ans"><p>Divindade <strong>sincrética</strong> (Hermes grego + Thoth egípcio) a quem se atribuíam os escritos do hermetismo.</p></div></details>
+    <details class="q"><summary>Marcos clássicos da Revolução Científica?</summary><div class="ans"><p><strong>1543</strong> (Copérnico) a <strong>1687</strong> (Newton, <em>Principia</em>).</p></div></details>
+    <details class="q"><summary>Bacon é empirista ou racionalista?</summary><div class="ans"><p><strong>Empirista</strong> (indução, experiência). Descartes é o racionalista.</p></div></details>
+    <details class="q"><summary>Por que Pasteur é “intruso” na lista?</summary><div class="ans"><p>Viveu no <strong>séc. XIX</strong>; é herdeiro do método e completou o trabalho de Redi contra a geração espontânea.</p></div></details>
+  </div>
+
+  <div class="box star"><span class="lbl">Se você só lembrar de uma coisa</span><p>A Filosofia Moderna troca a pergunta <strong>“o que a autoridade diz?”</strong> pela pergunta <strong>“o que a razão e a experiência conseguem demonstrar?”</strong>. Tomás mostra a razão servindo à fé num mundo hierárquico; a Revolução Científica mostra a razão, agora autônoma, medindo e explicando uma natureza regida por leis.</p></div>
+</section>
+
+<footer>
+  Aula construída a partir de “1 – Filosofia Moderna” (10 slides) e “As 5 vias – Tomás de Aquino”. Todo conteúdo externo ao material está marcado como “Complemento para melhor compreensão:”. Fontes citadas pelo material: RONAN, Colin A. <em>História Ilustrada da Ciência</em> (1987).
+</footer>
+</main>
+</div>
+</div>
+
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function prog(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';}
+  window.addEventListener('scroll',prog,{passive:true});prog();
+
+  var links=[].slice.call(document.querySelectorAll('.toc a, .mobilebar a'));
+  var ids=[];links.forEach(function(a){var id=a.getAttribute('href').slice(1);if(ids.indexOf(id)<0)ids.push(id);});
+  var targets=ids.map(function(id){return document.getElementById(id);}).filter(Boolean);
+  function spy(){
+    var y=window.scrollY+120,cur=targets[0]&&targets[0].id;
+    targets.forEach(function(t){if(t.getBoundingClientRect().top+window.scrollY<=y)cur=t.id;});
+    links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
+    var m=document.querySelector('.mobilebar a.active');
+    if(m&&window.innerWidth<=960){var bar2=m.parentNode;var l=m.offsetLeft-bar2.clientWidth/2+m.clientWidth/2;bar2.scrollTo({left:l,behavior:'smooth'});}
+  }
+  var t;window.addEventListener('scroll',function(){clearTimeout(t);t=setTimeout(spy,60);},{passive:true});spy();
+
+  document.querySelectorAll('.tbl table').forEach(function(tb){
+    var rows=tb.querySelectorAll('tr');if(!rows.length)return;
+    var heads=[].map.call(rows[0].querySelectorAll('th'),function(th){return th.textContent.trim();});
+    [].slice.call(rows,1).forEach(function(tr){[].forEach.call(tr.children,function(td,i){if(heads[i]&&!td.hasAttribute('colspan'))td.setAttribute('data-label',heads[i]);});});
+  });
+  var root=document.documentElement;
+  try{var saved=localStorage.getItem('fm-theme');if(saved)root.setAttribute('data-theme',saved);}catch(e){}
+  document.getElementById('themeBtn').addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark'||(!root.getAttribute('data-theme')&&window.matchMedia('(prefers-color-scheme: dark)').matches);
+    var next=dark?'light':'dark';root.setAttribute('data-theme',next);
+    try{localStorage.setItem('fm-theme',next);}catch(e){}
+  });
+  var open=false;
+  document.getElementById('openAll').addEventListener('click',function(){
+    open=!open;document.querySelectorAll('details.q').forEach(function(d){d.open=open;});
+    this.textContent=open?'Fechar respostas':'Abrir respostas';
+  });
+  window.addEventListener('beforeprint',function(){document.querySelectorAll('details.q').forEach(function(d){d.open=true;});});
+})();
+</script>
+</body>
+</html>
